@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soul Admin — Dashboard</title>
+  <link rel="stylesheet" href="/css/admin.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body class="admin-body">
+
+<!-- ══════════════ SIDEBAR ══════════════ -->
+<aside class="sidebar">
+  <div class="sidebar-logo">Soul Clothing</div>
+
+  <div class="sidebar-section-label">MAIN MENU</div>
+
+  <button class="nav-item active" onclick="switchSection('dashboard')" id="nav-dashboard">
+    <span class="nav-icon">📊</span> Dashboard
+  </button>
+  <button class="nav-item" onclick="switchSection('products')" id="nav-products">
+    <span class="nav-icon">👕</span> Products
+  </button>
+  <button class="nav-item" onclick="switchSection('new-arrivals')" id="nav-new-arrivals">
+    <span class="nav-icon">✨</span> New Arrivals
+  </button>
+  <button class="nav-item" onclick="switchSection('offers')" id="nav-offers">
+    <span class="nav-icon">🏷️</span> Offers
+  </button>
+  <button class="nav-item" onclick="switchSection('events')" id="nav-events">
+    <span class="nav-icon">📅</span> Events
+  </button>
+  <button class="nav-item" onclick="switchSection('orders')" id="nav-orders">
+    <span class="nav-icon">📦</span> Orders
+  </button>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-section-label">STORE</div>
+
+  <a href="/" class="sidebar-store-link">
+    <span class="nav-icon">🛍️</span> Visit Store
+  </a>
+
+  <div class="sidebar-bottom">
+    <button class="nav-item" onclick="refreshAllData()" id="refresh-btn">
+      <span class="nav-icon" id="refresh-icon">🔄</span> Refresh Data
+    </button>
+  </div>
+</aside>
+
+<!-- ══════════════ MAIN WRAPPER ══════════════ -->
+<div class="main-wrapper">
+
+  <!-- ── Header ── -->
+  <header class="admin-header">
+    <div class="admin-header-left">
+      <h1 id="section-title">Dashboard</h1>
+      <p id="section-subtitle">Soul Clothing Store</p>
+    </div>
+    <div class="admin-header-right">
+      <div class="header-search">
+        <span style="color:#9CA3AF;font-size:15px;">🔍</span>
+        <input type="text" placeholder="Search..." id="admin-search">
+      </div>
+      <button class="header-icon-btn" title="Notifications">🔔</button>
+      <div class="admin-avatar" title="Admin">A</div>
+    </div>
+  </header>
+
+  <!-- ══════════════ MAIN CONTENT ══════════════ -->
+  <main class="admin-main">
+
+    <!-- ═══════ SECTION: DASHBOARD ═══════ -->
+    <section id="sec-dashboard">
+
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon green">💰</div>
+          <div class="stat-body">
+            <div class="stat-label">Total Revenue</div>
+            <div class="stat-value" id="stat-total-revenue">₹0</div>
+            <div class="stat-trend up">↑ Live</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon blue">📦</div>
+          <div class="stat-body">
+            <div class="stat-label">Total Orders</div>
+            <div class="stat-value" id="stat-total-orders">0</div>
+            <div class="stat-trend up">↑ Updated</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon purple">👕</div>
+          <div class="stat-body">
+            <div class="stat-label">Total Products</div>
+            <div class="stat-value" id="stat-total-products">0</div>
+            <div class="stat-trend up">In Catalog</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon orange">✨</div>
+          <div class="stat-body">
+            <div class="stat-label">New Arrivals</div>
+            <div class="stat-value" id="stat-new-arrivals">0</div>
+            <div class="stat-trend up">Active</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon pink">🏷️</div>
+          <div class="stat-body">
+            <div class="stat-label">Active Offers</div>
+            <div class="stat-value" id="stat-active-offers">0</div>
+            <div class="stat-trend up">Running</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon red">⚠️</div>
+          <div class="stat-body">
+            <div class="stat-label">Low Stock Items</div>
+            <div class="stat-value" id="stat-low-stock">0</div>
+            <div class="stat-trend down">Needs Restock</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts -->
+      <div class="charts-row">
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <h3>Sales Overview</h3>
+            <button class="chart-filter-btn">Last 7 Days 📅</button>
+          </div>
+          <canvas id="sales-chart" height="100"></canvas>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <h3>Category Split</h3>
+          </div>
+          <canvas id="category-chart" height="200"></canvas>
+        </div>
+      </div>
+
+      <!-- Best Sellers + Recent Orders -->
+      <div class="tables-row">
+        <div class="table-card">
+          <div class="table-card-header">
+            <h3>Best Sellers</h3>
+            <span class="view-all-link" onclick="switchSection('products')">View all →</span>
+          </div>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Image</th>
+                <th>Product</th>
+                <th>Sold</th>
+                <th>Revenue</th>
+              </tr>
+            </thead>
+            <tbody id="dash-bestsellers-body">
+              <tr><td colspan="5" style="text-align:center;color:#9CA3AF;padding:20px">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-card">
+          <div class="table-card-header">
+            <h3>Recent Orders</h3>
+            <span class="view-all-link" onclick="switchSection('orders')">View all →</span>
+          </div>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Order ID</th>
+                <th>Status</th>
+                <th>Total</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="dash-orders-body">
+              <tr><td colspan="5" style="text-align:center;color:#9CA3AF;padding:20px">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ SECTION: PRODUCTS ═══════ -->
+    <section id="sec-products" class="hidden">
+      <div class="section-top">
+        <div>
+          <h2>Products</h2>
+          <p>Manage your catalog — stock, pricing, and visibility</p>
+        </div>
+        <button class="btn-admin btn-admin-primary" onclick="openProductModal()">+ Add Product</button>
+      </div>
+
+      <div class="table-card">
+        <div class="table-toolbar">
+          <div class="table-search">
+            <span style="color:#9CA3AF">🔍</span>
+            <input type="text" placeholder="Search products..." oninput="filterInventory()" id="inv-search">
+          </div>
+          <div style="display:flex;gap:8px">
+            <select class="form-select" style="width:auto;padding:8px 12px;font-size:13px" onchange="filterInventory()" id="inv-cat-filter">
+              <option value="">All Categories</option>
+              <option value="tshirt">T-Shirt</option>
+              <option value="polo">Polo</option>
+              <option value="shirt">Shirt</option>
+              <option value="jeans">Jeans</option>
+              <option value="pants">Pants</option>
+              <option value="sneakers">Sneakers</option>
+            </select>
+            <select class="form-select" style="width:auto;padding:8px 12px;font-size:13px" onchange="filterInventory()" id="inv-stock-filter">
+              <option value="">All Stock</option>
+              <option value="low">Low Stock (≤5)</option>
+              <option value="out">Out of Stock</option>
+            </select>
+          </div>
+        </div>
+
+        <table class="data-table" id="inventory-table">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Product</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Stock</th>
+              <th>Status</th>
+              <th>New Arrival</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="inventory-body">
+            <tr><td colspan="8" style="text-align:center;color:#9CA3AF;padding:30px">Loading products...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══════ SECTION: NEW ARRIVALS ═══════ -->
+    <section id="sec-new-arrivals" class="hidden">
+      <div class="section-top">
+        <div>
+          <h2>New Arrivals</h2>
+          <p>Toggle which products appear in the New Arrivals section</p>
+        </div>
+      </div>
+      <div class="cards-grid" id="new-arrivals-curator">
+        <div style="text-align:center;color:#9CA3AF;padding:40px;grid-column:1/-1">Loading...</div>
+      </div>
+    </section>
+
+    <!-- ═══════ SECTION: OFFERS ═══════ -->
+    <section id="sec-offers" class="hidden">
+      <div class="section-top">
+        <div>
+          <h2>Offers &amp; Promotions</h2>
+          <p>Create and manage discount codes and promotions</p>
+        </div>
+        <button class="btn-admin btn-admin-primary" onclick="openOfferModal()">+ Add Offer</button>
+      </div>
+      <div class="cards-grid" id="offers-grid">
+        <div style="text-align:center;color:#9CA3AF;padding:40px;grid-column:1/-1">Loading...</div>
+      </div>
+    </section>
+
+    <!-- ═══════ SECTION: EVENTS ═══════ -->
+    <section id="sec-events" class="hidden">
+      <div class="section-top">
+        <div>
+          <h2>Upcoming Events</h2>
+          <p>Manage store events and customer RSVPs</p>
+        </div>
+        <button class="btn-admin btn-admin-primary" onclick="openEventModal()">+ Add Event</button>
+      </div>
+      <div class="cards-grid" id="events-grid">
+        <div style="text-align:center;color:#9CA3AF;padding:40px;grid-column:1/-1">Loading...</div>
+      </div>
+    </section>
+
+    <!-- ═══════ SECTION: ORDERS ═══════ -->
+    <section id="sec-orders" class="hidden">
+      <div class="section-top">
+        <div>
+          <h2>Orders</h2>
+          <p>View and manage all customer orders</p>
+        </div>
+      </div>
+      <div class="table-card">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Order ID</th>
+              <th>Customer</th>
+              <th>Items</th>
+              <th>Total</th>
+              <th>Status</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="orders-body">
+            <tr><td colspan="7" style="text-align:center;color:#9CA3AF;padding:30px">Loading orders...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+</div><!-- end main-wrapper -->
+
+<!-- ══════════════ PRODUCT MODAL ══════════════ -->
+<div class="modal-overlay" id="product-modal-overlay" onclick="if(event.target===this)closeProductModal()">
+  <div class="modal-box">
+    <button class="modal-close-btn" onclick="closeProductModal()">✕</button>
+    <h2 id="product-modal-title">Add Product</h2>
+    <form id="product-form" onsubmit="saveProduct(event)">
+      <input type="hidden" id="prod-id">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Product Name *</label>
+          <input type="text" class="form-input" id="prod-name" required placeholder="e.g. Classic Black Tee">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Category *</label>
+          <select class="form-select" id="prod-category" required>
+            <option value="">Select...</option>
+            <option value="tshirt">T-Shirt</option>
+            <option value="polo">Polo</option>
+            <option value="shirt">Shirt</option>
+            <option value="jeans">Jeans</option>
+            <option value="pants">Pants</option>
+            <option value="sneakers">Sneakers</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Price (₹) *</label>
+          <input type="number" class="form-input" id="prod-price" required min="1" placeholder="999">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Original Price (₹)</label>
+          <input type="number" class="form-input" id="prod-original-price" min="1" placeholder="1499">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Stock Quantity</label>
+          <input type="number" class="form-input" id="prod-stock" min="0" placeholder="50">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Color</label>
+          <input type="text" class="form-input" id="prod-color" placeholder="e.g. Black">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Image URL</label>
+        <input type="url" class="form-input" id="prod-image" placeholder="https://images.unsplash.com/...">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Description</label>
+        <textarea class="form-textarea" id="prod-desc" placeholder="Product description..."></textarea>
+      </div>
+      <div class="form-group" style="display:flex;align-items:center;gap:12px">
+        <label class="toggle-switch">
+          <input type="checkbox" id="prod-is-new">
+          <span class="toggle-slider"></span>
+        </label>
+        <span style="font-size:14px;font-weight:500;color:#374151">Mark as New Arrival</span>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn-admin btn-admin-outline" onclick="closeProductModal()">Cancel</button>
+        <button type="submit" class="btn-admin btn-admin-primary">Save Product</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ══════════════ OFFER MODAL ══════════════ -->
+<div class="modal-overlay" id="offer-modal-overlay" onclick="if(event.target===this)closeOfferModal()">
+  <div class="modal-box">
+    <button class="modal-close-btn" onclick="closeOfferModal()">✕</button>
+    <h2 id="offer-modal-title">Add Offer</h2>
+    <form id="offer-form" onsubmit="saveOffer(event)">
+      <input type="hidden" id="offer-id">
+      <div class="form-group">
+        <label class="form-label">Offer Title *</label>
+        <input type="text" class="form-input" id="offer-title" required placeholder="e.g. Summer Sale">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Promo Code *</label>
+          <input type="text" class="form-input" id="offer-code" required placeholder="SOUL20" style="text-transform:uppercase">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Discount %</label>
+          <input type="number" class="form-input" id="offer-discount" min="1" max="100" placeholder="20">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Description</label>
+        <textarea class="form-textarea" id="offer-desc" placeholder="Offer details..." style="min-height:70px"></textarea>
+      </div>
+      <div class="form-group" style="display:flex;align-items:center;gap:12px">
+        <label class="toggle-switch">
+          <input type="checkbox" id="offer-active" checked>
+          <span class="toggle-slider"></span>
+        </label>
+        <span style="font-size:14px;font-weight:500;color:#374151">Active</span>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn-admin btn-admin-outline" onclick="closeOfferModal()">Cancel</button>
+        <button type="submit" class="btn-admin btn-admin-primary">Save Offer</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ══════════════ EVENT MODAL ══════════════ -->
+<div class="modal-overlay" id="event-modal-overlay" onclick="if(event.target===this)closeEventModal()">
+  <div class="modal-box">
+    <button class="modal-close-btn" onclick="closeEventModal()">✕</button>
+    <h2 id="event-modal-title">Add Event</h2>
+    <form id="event-form" onsubmit="saveEvent(event)">
+      <input type="hidden" id="event-id">
+      <div class="form-group">
+        <label class="form-label">Event Title *</label>
+        <input type="text" class="form-input" id="event-title" required placeholder="e.g. Summer Collection Launch">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Date *</label>
+          <input type="date" class="form-input" id="event-date" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Time</label>
+          <input type="time" class="form-input" id="event-time">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Location</label>
+        <input type="text" class="form-input" id="event-location" placeholder="e.g. Mumbai, MH">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Description</label>
+        <textarea class="form-textarea" id="event-desc" placeholder="Event details..." style="min-height:70px"></textarea>
+      </div>
+      <div class="form-group" style="display:flex;align-items:center;gap:12px">
+        <label class="toggle-switch">
+          <input type="checkbox" id="event-active" checked>
+          <span class="toggle-slider"></span>
+        </label>
+        <span style="font-size:14px;font-weight:500;color:#374151">Active</span>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn-admin btn-admin-outline" onclick="closeEventModal()">Cancel</button>
+        <button type="submit" class="btn-admin btn-admin-primary">Save Event</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toast-container"></div>
+
+<script type="module" src="/js/admin.js"></script>
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>

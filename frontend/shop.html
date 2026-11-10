@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop — Soul Clothing</title>
+  <meta name="description" content="Browse Soul Clothing's full collection — T-Shirts, Polo, Shirts, Jeans, Pants and Sneakers.">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<!-- ── Announcement Bar ──────────────────────────────── -->
+<div id="announcement-bar">FREE SHIPPING ON ORDERS ABOVE ₹999 &nbsp;|&nbsp; USE CODE: SOUL10 FOR 10% OFF</div>
+
+<!-- ── Navbar ─────────────────────────────────────────── -->
+<nav class="navbar">
+  <div class="nav-top">
+    <div class="nav-search">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="global-search" placeholder="Search products..." autocomplete="off">
+    </div>
+    <a href="/" class="nav-logo">Soul Clothing</a>
+    <div class="nav-actions">
+      <a href="/admin.html" style="font-size:11px;letter-spacing:1px;">ADMIN</a>
+      <a href="#" onclick="openCart(); return false;">
+        <button class="nav-cart-btn">🛒 CART <span class="cart-count" id="cart-badge">0</span></button>
+      </a>
+    </div>
+  </div>
+  <div class="nav-bottom">
+    <ul>
+      <li><a href="/#new-arrivals">NEW ARRIVALS</a></li>
+      <li class="sep">|</li>
+      <li><a href="?cat=formal-shirt" class="filter-nav">FORMAL</a></li>
+      <li class="sep">|</li>
+      <li><a href="?cat=dress" class="filter-nav">DRESSES</a></li>
+      <li class="sep">|</li>
+      <li><a href="?cat=tshirt" class="filter-nav">T-SHIRTS</a></li>
+      <li class="sep">|</li>
+      <li><a href="?cat=polo" class="filter-nav">POLO</a></li>
+      <li class="sep">|</li>
+      <li><a href="?cat=shirt" class="filter-nav">SHIRTS</a></li>
+      <li class="sep">|</li>
+      <li><a href="?cat=jeans" class="filter-nav">JEANS</a></li>
+      <li class="sep">|</li>
+      <li><a href="?cat=pants" class="filter-nav">PANTS</a></li>
+      <li class="sep">|</li>
+      <li><a href="?cat=sneakers" class="filter-nav">SNEAKERS</a></li>
+      <li class="sep">|</li>
+      <li class="nav-outfit-studio"><a href="/showcase.html" style="color:#00e5ff !important;font-weight:800;">⚡ HOLOGRAM STUDIO</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── Shop Banner ────────────────────────────────────── -->
+<div style="background:#f7f7f7;border-bottom:1px solid #e5e5e5;padding:28px 40px;display:flex;align-items:center;justify-content:space-between;">
+  <div>
+    <h1 style="font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:2px;color:#111;line-height:1" id="shop-heading">ALL PRODUCTS</h1>
+    <p style="font-size:13px;color:#888;margin-top:4px" id="product-count-label">Loading...</p>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px">
+    <label style="font-size:12px;color:#555;font-weight:600">SORT BY:</label>
+    <select class="sort-select" id="sort-select" onchange="applySortFilter()">
+      <option value="default">Featured</option>
+      <option value="price-asc">Price: Low to High</option>
+      <option value="price-desc">Price: High to Low</option>
+      <option value="new">New Arrivals</option>
+      <option value="popular">Most Popular</option>
+    </select>
+  </div>
+</div>
+
+<!-- ── Shop Layout ────────────────────────────────────── -->
+<div class="shop-layout">
+
+  <!-- Sidebar Filters -->
+  <aside class="shop-sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">CATEGORIES</div>
+      <div class="sidebar-options" id="cat-filters">
+        <label class="sidebar-option"><input type="checkbox" value="formal-shirt" onchange="applyFilters()"> Formal Shirts</label>
+        <label class="sidebar-option"><input type="checkbox" value="dress" onchange="applyFilters()"> Dresses</label>
+        <label class="sidebar-option"><input type="checkbox" value="tshirt" onchange="applyFilters()"> T-Shirt</label>
+        <label class="sidebar-option"><input type="checkbox" value="polo" onchange="applyFilters()"> Polo</label>
+        <label class="sidebar-option"><input type="checkbox" value="shirt" onchange="applyFilters()"> Shirt</label>
+        <label class="sidebar-option"><input type="checkbox" value="jeans" onchange="applyFilters()"> Jeans</label>
+        <label class="sidebar-option"><input type="checkbox" value="pants" onchange="applyFilters()"> Pants</label>
+        <label class="sidebar-option"><input type="checkbox" value="sneakers" onchange="applyFilters()"> Sneakers</label>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">GENDER</div>
+      <div class="sidebar-options" id="gender-filters">
+        <label class="sidebar-option"><input type="checkbox" value="men" onchange="applyFilters()"> Men</label>
+        <label class="sidebar-option"><input type="checkbox" value="women" onchange="applyFilters()"> Women</label>
+        <label class="sidebar-option"><input type="checkbox" value="unisex" onchange="applyFilters()"> Unisex</label>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">PRICE RANGE</div>
+      <div class="sidebar-options">
+        <label class="sidebar-option"><input type="checkbox" value="0-500" onchange="applyFilters()"> Under ₹500</label>
+        <label class="sidebar-option"><input type="checkbox" value="500-1000" onchange="applyFilters()"> ₹500 – ₹1,000</label>
+        <label class="sidebar-option"><input type="checkbox" value="1000-2000" onchange="applyFilters()"> ₹1,000 – ₹2,000</label>
+        <label class="sidebar-option"><input type="checkbox" value="2000-99999" onchange="applyFilters()"> Above ₹2,000</label>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">AVAILABILITY</div>
+      <div class="sidebar-options">
+        <label class="sidebar-option"><input type="checkbox" id="filter-in-stock" onchange="applyFilters()"> In Stock Only</label>
+        <label class="sidebar-option"><input type="checkbox" id="filter-new-only" onchange="applyFilters()"> New Arrivals</label>
+        <label class="sidebar-option"><input type="checkbox" id="filter-sale-only" onchange="applyFilters()"> On Sale</label>
+      </div>
+    </div>
+
+    <button class="btn-outline" style="width:100%;margin-top:8px" onclick="clearFilters()">CLEAR ALL</button>
+  </aside>
+
+  <!-- Products Grid -->
+  <div>
+    <div class="products-grid" id="products-grid">
+      <!-- Skeletons -->
+      <div class="product-card"><div class="product-card-image skeleton" style="aspect-ratio:3/4"></div><div class="product-card-body"><div class="skeleton" style="height:13px;width:70%;margin-bottom:8px"></div><div class="skeleton" style="height:15px;width:40%"></div></div></div>
+      <div class="product-card"><div class="product-card-image skeleton" style="aspect-ratio:3/4"></div><div class="product-card-body"><div class="skeleton" style="height:13px;width:70%;margin-bottom:8px"></div><div class="skeleton" style="height:15px;width:40%"></div></div></div>
+      <div class="product-card"><div class="product-card-image skeleton" style="aspect-ratio:3/4"></div><div class="product-card-body"><div class="skeleton" style="height:13px;width:70%;margin-bottom:8px"></div><div class="skeleton" style="height:15px;width:40%"></div></div></div>
+      <div class="product-card"><div class="product-card-image skeleton" style="aspect-ratio:3/4"></div><div class="product-card-body"><div class="skeleton" style="height:13px;width:70%;margin-bottom:8px"></div><div class="skeleton" style="height:15px;width:40%"></div></div></div>
+      <div class="product-card"><div class="product-card-image skeleton" style="aspect-ratio:3/4"></div><div class="product-card-body"><div class="skeleton" style="height:13px;width:70%;margin-bottom:8px"></div><div class="skeleton" style="height:15px;width:40%"></div></div></div>
+      <div class="product-card"><div class="product-card-image skeleton" style="aspect-ratio:3/4"></div><div class="product-card-body"><div class="skeleton" style="height:13px;width:70%;margin-bottom:8px"></div><div class="skeleton" style="height:15px;width:40%"></div></div></div>
+    </div>
+    <div id="no-products" class="hidden" style="text-align:center;padding:80px 0;color:#888">
+      <div style="font-size:3rem;margin-bottom:16px">🔍</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:2px;color:#111">No Products Found</div>
+      <p style="margin-top:8px;font-size:14px">Try adjusting your filters</p>
+      <button class="btn-outline" style="margin-top:20px" onclick="clearFilters()">CLEAR FILTERS</button>
+    </div>
+  </div>
+
+</div><!-- end shop-layout -->
+
+<!-- ── Footer ─────────────────────────────────────────── -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">Soul Clothing</div>
+      <p class="footer-about">Premium streetwear crafted for those who lead. Wear The Soul. Own The Street.</p>
+    </div>
+    <div>
+      <div class="footer-heading">Shop</div>
+      <ul class="footer-links">
+        <li><a href="?cat=tshirt">T-Shirts</a></li>
+        <li><a href="?cat=polo">Polo</a></li>
+        <li><a href="?cat=shirt">Shirts</a></li>
+        <li><a href="?cat=jeans">Jeans</a></li>
+        <li><a href="?cat=sneakers">Sneakers</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Info</div>
+      <ul class="footer-links">
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Size Guide</a></li>
+        <li><a href="#">Shipping Policy</a></li>
+        <li><a href="#">Return Policy</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Follow Us</div>
+      <ul class="footer-links">
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Twitter / X</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 Soul Clothing. All rights reserved.</span>
+    <span>Made with ❤️ for the streets</span>
+  </div>
+</footer>
+
+<!-- Cart & Modal (same as index) -->
+<div id="cart-overlay" onclick="closeCart()"></div>
+<aside id="cart-sidebar">
+  <div class="cart-header">
+    <h2>Your Cart</h2>
+    <button class="cart-close-btn" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-body" id="cart-items">
+    <div class="cart-empty">Your cart is empty.</div>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-subtotal">
+      <span class="label">SUBTOTAL</span>
+      <span class="amount" id="cart-total">₹0</span>
+    </div>
+    <button class="btn-checkout" onclick="window.location.href='/checkout.html'">PROCEED TO CHECKOUT</button>
+  </div>
+</aside>
+
+<div id="product-modal-overlay" onclick="if(event.target===this) closeProductModal()">
+  <div id="product-modal">
+    <div class="modal-image-panel" id="modal-image-panel">
+      <div class="modal-image-placeholder">👕</div>
+    </div>
+    <div class="modal-info" id="modal-info">
+      <button class="modal-close" onclick="closeProductModal()">✕</button>
+      <div class="modal-category" id="modal-category"></div>
+      <h2 class="modal-title" id="modal-title"></h2>
+      <div class="modal-price" id="modal-price"></div>
+      <div class="modal-rating" id="modal-rating"></div>
+      <div class="modal-divider"></div>
+      <p class="modal-desc" id="modal-desc"></p>
+      <div class="modal-label">SELECT SIZE</div>
+      <div class="size-grid" id="modal-sizes"></div>
+      <button class="btn-add-to-cart" id="modal-add-btn" onclick="addToCartFromModal()">ADD TO CART</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+
+<script type="module" src="/js/app.js"></script>
+<script type="module" src="/js/shop.js"></script>
+</body>
+</html>

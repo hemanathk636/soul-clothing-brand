@@ -1,0 +1,66 @@
+[
+  {
+    "id": "ORD-8DDFF7DD",
+    "customer": {
+      "city": "Bangalore",
+      "name": "Test User",
+      "phone": "9876543210",
+      "pincode": "560001",
+      "email": "test@example.com",
+      "address": "123 Soul Street"
+    },
+    "items": [
+      {
+        "productId": "TSH001",
+        "name": "Midnight Shadow Tee",
+        "category": "t-shirts",
+        "size": "L",
+        "quantity": 1,
+        "price": 1299,
+        "total": 1299,
+        "color": "Black"
+      }
+    ],
+    "paymentMethod": "card",
+    "paymentStatus": "paid",
+    "orderStatus": "confirmed",
+    "subtotal": 1299,
+    "shipping": 99,
+    "tax": 234,
+    "grandTotal": 1632,
+    "placedAt": "2026-10-12T08:07:29.956Z",
+    "estimatedDelivery": "2026-10-17T08:07:29.956Z"
+  },
+  {
+    "id": "ORD-30EBF8AE",
+    "customer": {
+      "name": "Hemanath K",
+      "email": "hemanathk636@gmail.com",
+      "phone": "+919894240655",
+      "address": "2/1229,Basthi 2nd cross,Avalapalli Road,Hosur",
+      "city": "Hosur",
+      "pincode": "635109"
+    },
+    "items": [
+      {
+        "productId": "SNK002",
+        "name": "Street Classic Low",
+        "category": "sneakers",
+        "size": "10",
+        "quantity": 1,
+        "price": 5999,
+        "total": 5999,
+        "color": "Black/Gum"
+      }
+    ],
+    "paymentMethod": "cod",
+    "paymentStatus": "pending",
+    "orderStatus": "confirmed",
+    "subtotal": 5999,
+    "shipping": 0,
+    "tax": 1080,
+    "grandTotal": 7079,
+    "placedAt": "2026-10-12T14:30:51.238Z",
+    "estimatedDelivery": "2026-10-17T14:30:51.238Z"
+  }
+]

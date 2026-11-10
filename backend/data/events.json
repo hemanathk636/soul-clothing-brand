@@ -1,0 +1,38 @@
+[
+  {
+    "id": "EVT-201",
+    "title": "Soul Autumn/Winter Runway Drop",
+    "date": "2026-10-25",
+    "time": "7:00 PM IST",
+    "location": "Live Stream & Soul Flagship Studio, Bangalore",
+    "description": "Exclusive live preview of our upcoming heavyweight outerwear and limited edition sneaker collaborations. Attendees get first access to drops.",
+    "tag": "Runway Drop",
+    "emoji": "✨",
+    "active": true,
+    "rsvps": 420
+  },
+  {
+    "id": "EVT-202",
+    "title": "Midnight Streetwear Pop-Up",
+    "date": "2026-11-08",
+    "time": "9:00 PM - 2:00 AM",
+    "location": "Indiranagar 100ft Road, Bangalore",
+    "description": "An immersive late-night music, apparel and sneaker culture pop-up store. Limited to 150 wristbands. DJs, custom screen printing & giveaways.",
+    "tag": "Pop-Up Experience",
+    "emoji": "👟",
+    "active": true,
+    "rsvps": 185
+  },
+  {
+    "id": "EVT-203",
+    "title": "Sustainable Denim & Craft Workshop",
+    "date": "2026-11-20",
+    "time": "3:00 PM - 6:00 PM",
+    "location": "Soul Design Hub, Mumbai",
+    "description": "Learn the art of raw selvedge denim preservation, repair, and bespoke embroidery with our master tailors.",
+    "tag": "Workshop",
+    "emoji": "🧵",
+    "active": true,
+    "rsvps": 94
+  }
+]

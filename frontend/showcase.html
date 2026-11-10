@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soul Clothing — Hologram Outfit Studio & Customizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    :root {
+      --holo-cyan: #00f0ff;
+      --holo-cyan-dim: rgba(0, 240, 255, 0.2);
+      --holo-blue: #0066ff;
+      --holo-purple: #9d4edd;
+      --holo-glow: 0 0 25px rgba(0, 240, 255, 0.45);
+      --holo-bg: #030710;
+      --holo-panel: rgba(5, 15, 30, 0.92);
+      --holo-border: rgba(0, 240, 255, 0.3);
+      --holo-text: #b8e2f2;
+      --holo-gold: #ffd166;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--holo-bg);
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background-image:
+        radial-gradient(circle at 50% 0%, rgba(0, 102, 255, 0.18) 0%, transparent 60%),
+        radial-gradient(circle at 20% 80%, rgba(0, 240, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(157, 78, 221, 0.08) 0%, transparent 50%);
+    }
+
+    /* Topbar */
+    .studio-topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 32px; background: rgba(3, 7, 16, 0.96);
+      border-bottom: 1px solid var(--holo-border);
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+    .studio-topbar-left { display: flex; align-items: center; gap: 20px; }
+    .studio-logo {
+      font-family: 'Cinzel Decorative', serif; font-size: 1.3rem;
+      font-weight: 900; color: #fff; letter-spacing: 3px;
+      text-shadow: 0 0 20px rgba(0, 240, 255, 0.6); text-decoration: none;
+    }
+    .studio-logo span { color: var(--holo-cyan); }
+    .studio-badge {
+      background: rgba(0, 240, 255, 0.12); border: 1px solid var(--holo-cyan);
+      color: var(--holo-cyan); font-family: 'Share Tech Mono', monospace;
+      font-size: 10px; padding: 4px 10px; letter-spacing: 2px;
+    }
+    .studio-topbar-center {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Share Tech Mono', monospace; font-size: 11px;
+      color: var(--holo-text); letter-spacing: 3px;
+    }
+    .status-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--holo-cyan); box-shadow: 0 0 10px var(--holo-cyan);
+      animation: blinkDot 1.6s infinite;
+    }
+    @keyframes blinkDot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.3; transform: scale(0.8); } }
+    .studio-topbar-right { display: flex; align-items: center; gap: 16px; }
+    .studio-nav-btn {
+      color: var(--holo-text); text-decoration: none; font-size: 11px;
+      font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+      padding: 8px 14px; border: 1px solid transparent; transition: all 0.2s;
+    }
+    .studio-nav-btn:hover { border-color: var(--holo-border); color: #fff; }
+    .studio-cart-btn {
+      background: var(--holo-cyan); color: #020b14; border: none;
+      padding: 9px 20px; font-weight: 800; font-size: 11px; letter-spacing: 2px;
+      cursor: pointer; display: flex; align-items: center; gap: 8px;
+      transition: all 0.25s; font-family: 'Inter', sans-serif;
+    }
+    .studio-cart-btn:hover { background: #fff; box-shadow: 0 0 20px rgba(0,240,255,0.6); }
+
+    /* Studio Main Layout */
+    .studio-layout {
+      display: grid;
+      grid-template-columns: 380px 1fr 380px;
+      min-height: calc(100vh - 58px);
+    }
+
+    /* Left Panel: Catalog & Selection */
+    .panel-left {
+      background: var(--holo-panel);
+      border-right: 1px solid var(--holo-border);
+      padding: 24px 20px;
+      overflow-y: auto;
+      max-height: calc(100vh - 58px);
+    }
+    .panel-title {
+      font-family: 'Share Tech Mono', monospace; font-size: 11px;
+      letter-spacing: 4px; color: var(--holo-cyan); text-transform: uppercase;
+      margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .panel-title::after {
+      content: ''; flex: 1; height: 1px; background: var(--holo-border); margin-left: 12px;
+    }
+
+    /* Preset Outfit Combinations */
+    .preset-combos-wrap { margin-bottom: 24px; }
+    .preset-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .preset-card {
+      background: rgba(0, 240, 255, 0.04);
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      padding: 10px; cursor: pointer; transition: all 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .preset-card:hover {
+      border-color: var(--holo-cyan);
+      background: rgba(0, 240, 255, 0.1);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+    }
+    .preset-tag {
+      font-family: 'Share Tech Mono', monospace; font-size: 8px;
+      color: var(--holo-gold); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px;
+    }
+    .preset-name { font-size: 11px; font-weight: 700; color: #fff; line-height: 1.3; }
+    .preset-desc { font-size: 10px; color: var(--holo-text); opacity: 0.7; margin-top: 3px; }
+
+    /* Category tabs */
+    .cat-tabs {
+      display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px;
+    }
+    .cat-tab {
+      background: rgba(0, 240, 255, 0.05); border: 1px solid rgba(0, 240, 255, 0.2);
+      color: var(--holo-text); padding: 7px 12px; font-size: 10px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; transition: all 0.2s;
+    }
+    .cat-tab:hover { background: rgba(0, 240, 255, 0.15); color: #fff; border-color: var(--holo-cyan); }
+    .cat-tab.active { background: var(--holo-cyan); color: #020b14; border-color: var(--holo-cyan); font-weight: 800; }
+
+    /* Catalog Items Grid */
+    .catalog-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    }
+    .catalog-card {
+      background: rgba(8, 20, 36, 0.9);
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      cursor: pointer; transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative; overflow: hidden; display: flex; flex-direction: column;
+    }
+    .catalog-card:hover {
+      border-color: var(--holo-cyan);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0, 240, 255, 0.25);
+    }
+    .catalog-card.active {
+      border: 2px solid var(--holo-cyan);
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.45);
+    }
+    .catalog-card-img-wrap {
+      position: relative; aspect-ratio: 3/4; overflow: hidden; background: #0a1524;
+    }
+    .catalog-card-img-wrap img {
+      width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease;
+    }
+    .catalog-card:hover .catalog-card-img-wrap img { transform: scale(1.06); }
+    .catalog-badge-disc {
+      position: absolute; top: 6px; left: 6px; background: #c0392b;
+      color: #fff; font-size: 9px; font-weight: 800; padding: 2px 6px; letter-spacing: 1px;
+    }
+    .catalog-badge-active {
+      position: absolute; top: 6px; right: 6px; width: 22px; height: 22px;
+      border-radius: 50%; background: var(--holo-cyan); color: #000;
+      display: none; align-items: center; justify-content: center; font-size: 11px; font-weight: 900;
+    }
+    .catalog-card.active .catalog-badge-active { display: flex; }
+    .catalog-card-body { padding: 10px 8px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .catalog-card-spec {
+      font-family: 'Share Tech Mono', monospace; font-size: 8px; color: var(--holo-cyan);
+      letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2px;
+    }
+    .catalog-card-title {
+      font-size: 11px; font-weight: 600; color: #fff; line-height: 1.3;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .catalog-card-price-row {
+      display: flex; align-items: baseline; gap: 6px; margin-top: 4px;
+    }
+    .catalog-card-price { font-size: 12px; font-weight: 800; color: var(--holo-cyan); }
+    .catalog-card-orig { font-size: 10px; color: var(--holo-text); text-decoration: line-through; opacity: 0.6; }
+
+    /* Center Panel: Hologram Projection Chamber */
+    .panel-center {
+      display: flex; flex-direction: column; align-items: center;
+      padding: 24px 20px; position: relative; overflow: hidden;
+    }
+
+    /* Model Gender & Angle Controller */
+    .chamber-controls-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 580px; margin-bottom: 16px;
+    }
+    .gender-switch {
+      display: flex; border: 1px solid var(--holo-border); background: rgba(0, 240, 255, 0.05);
+    }
+    .gender-switch-btn {
+      background: transparent; color: var(--holo-text); border: none;
+      padding: 8px 24px; font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; cursor: pointer; transition: all 0.2s;
+      font-family: 'Share Tech Mono', monospace;
+    }
+    .gender-switch-btn.active {
+      background: var(--holo-cyan); color: #020b14; font-weight: 800;
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+    }
+    .angle-selector {
+      display: flex; gap: 6px;
+    }
+    .angle-btn {
+      background: rgba(0, 240, 255, 0.05); border: 1px solid var(--holo-border);
+      color: var(--holo-text); padding: 7px 12px; font-size: 10px;
+      font-family: 'Share Tech Mono', monospace; letter-spacing: 1px; cursor: pointer; transition: all 0.2s;
+    }
+    .angle-btn.active { background: rgba(0, 240, 255, 0.2); border-color: var(--holo-cyan); color: #fff; }
+
+    /* The Hologram Chamber Viewport */
+    .holo-viewport {
+      position: relative;
+      width: 100%;
+      max-width: 440px;
+      aspect-ratio: 9 / 16;
+      background: radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.15) 0%, rgba(2, 11, 20, 0.95) 80%);
+      border: 1px solid var(--holo-border);
+      box-shadow: 0 0 50px rgba(0, 240, 255, 0.2), inset 0 0 60px rgba(0, 240, 255, 0.08);
+      overflow: hidden;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+
+    /* Chamber Scanning Grid Lines */
+    .holo-viewport::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 10;
+      background:
+        repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0, 240, 255, 0.04) 3px, rgba(0, 240, 255, 0.04) 4px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.02) 1px, transparent 1px);
+      background-size: 100% 4px, 40px 100%;
+      animation: scanLinesMove 12s linear infinite;
+    }
+    @keyframes scanLinesMove { from { background-position: 0 0, 0 0; } to { background-position: 0 400px, 0 0; } }
+
+    /* Laser Sweep Beam */
+    .holo-sweep-beam {
+      position: absolute; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, transparent, var(--holo-cyan), #fff, var(--holo-cyan), transparent);
+      box-shadow: 0 0 15px var(--holo-cyan), 0 0 30px rgba(0, 240, 255, 0.8);
+      z-index: 12; pointer-events: none;
+      animation: laserSweep 4s ease-in-out infinite;
+    }
+    @keyframes laserSweep {
+      0% { top: -5px; opacity: 0; }
+      15% { opacity: 1; }
+      85% { opacity: 1; }
+      100% { top: 100%; opacity: 0; }
+    }
+
+    /* Holographic Projection Base Floor */
+    .holo-floor-projection {
+      position: absolute; bottom: 35px; left: 50%; transform: translateX(-50%);
+      width: 320px; height: 90px;
+      border: 1.5px dashed rgba(0, 240, 255, 0.35); border-radius: 50%;
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.3), inset 0 0 25px rgba(0, 240, 255, 0.2);
+      z-index: 2; pointer-events: none;
+      animation: rotateFloor 20s linear infinite;
+    }
+    .holo-floor-projection::after {
+      content: ''; position: absolute; inset: 15px; border-radius: 50%;
+      border: 1px solid rgba(0, 240, 255, 0.2);
+    }
+    @keyframes rotateFloor { 0% { transform: translateX(-50%) rotate(0deg); } 100% { transform: translateX(-50%) rotate(360deg); } }
+
+    /* Model Image Presentation */
+    .holo-model-container {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      z-index: 3;
+    }
+    .holo-model-img {
+      width: 100%; height: 100%; object-fit: cover; object-position: top center;
+      filter: saturate(0.85) contrast(1.1) brightness(0.95);
+      mix-blend-mode: screen;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    /* Garment Projection Floating Callouts */
+    .holo-hud-callouts {
+      position: absolute; inset: 0; z-index: 15; pointer-events: none;
+    }
+    .holo-callout {
+      position: absolute; background: rgba(3, 15, 30, 0.92);
+      border: 1px solid var(--holo-cyan);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.35);
+      padding: 6px 10px; font-family: 'Share Tech Mono', monospace;
+      font-size: 9px; color: #fff; max-width: 190px;
+      transition: all 0.3s ease; animation: calloutPulse 3s infinite alternate;
+    }
+    @keyframes calloutPulse { 0% { transform: scale(1); } 100% { transform: scale(1.02); } }
+    .holo-callout::before {
+      content: ''; position: absolute; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--holo-cyan); box-shadow: 0 0 8px var(--holo-cyan);
+    }
+    .holo-callout.top-callout { top: 22%; left: 14px; }
+    .holo-callout.top-callout::before { right: -12px; top: 50%; transform: translateY(-50%); }
+    .holo-callout.bottom-callout { top: 58%; right: 14px; text-align: right; }
+    .holo-callout.bottom-callout::before { left: -12px; top: 50%; transform: translateY(-50%); }
+    .holo-callout.shoes-callout { bottom: 12%; left: 18px; }
+    .holo-callout.shoes-callout::before { right: -12px; top: 50%; transform: translateY(-50%); }
+    .holo-callout-label { color: var(--holo-cyan); font-weight: 700; letter-spacing: 1px; font-size: 8px; }
+    .holo-callout-value { font-size: 10px; font-weight: 600; margin-top: 2px; }
+    .holo-callout-spec { color: var(--holo-gold); font-size: 8px; margin-top: 1px; }
+
+    /* Contact Sheet Metadata Overlay */
+    .holo-meta-header {
+      position: relative; z-index: 15; padding: 12px 14px;
+      display: flex; justify-content: space-between; align-items: flex-start;
+      background: linear-gradient(180deg, rgba(2, 11, 20, 0.9) 0%, transparent 100%);
+      font-family: 'Share Tech Mono', monospace; font-size: 9px; color: var(--holo-text);
+      line-height: 1.5; pointer-events: none;
+    }
+    .holo-meta-right { text-align: right; }
+    .holo-meta-footer {
+      position: relative; z-index: 15; padding: 10px 14px;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(2, 11, 20, 0.95); border-top: 1px solid var(--holo-border);
+      font-family: 'Share Tech Mono', monospace; font-size: 10px; color: var(--holo-cyan);
+      pointer-events: none;
+    }
+
+    /* Reticle Targets & Measurements */
+    .holo-reticle {
+      position: absolute; width: 20px; height: 20px; border-color: var(--holo-cyan);
+      border-style: solid; z-index: 14; pointer-events: none;
+    }
+    .reticle-tl { top: 10px; left: 10px; border-width: 2px 0 0 2px; }
+    .reticle-tr { top: 10px; right: 10px; border-width: 2px 2px 0 0; }
+    .reticle-bl { bottom: 45px; left: 10px; border-width: 0 0 2px 2px; }
+    .reticle-br { bottom: 45px; right: 10px; border-width: 0 2px 2px 0; }
+
+    /* Model Spec Bio Card */
+    .model-bio-bar {
+      margin-top: 14px; width: 100%; max-width: 440px;
+      background: rgba(0, 240, 255, 0.05); border: 1px solid var(--holo-border);
+      padding: 12px 16px; display: flex; justify-content: space-between; align-items: center;
+    }
+    .model-bio-left h4 {
+      font-size: 12px; font-weight: 700; color: #fff; letter-spacing: 1px;
+    }
+    .model-bio-left p {
+      font-family: 'Share Tech Mono', monospace; font-size: 10px; color: var(--holo-text); margin-top: 2px;
+    }
+    .model-specs-strip {
+      display: flex; gap: 12px; font-family: 'Share Tech Mono', monospace; font-size: 10px;
+    }
+    .model-spec-item { text-align: right; }
+    .model-spec-item span { color: var(--holo-cyan); font-weight: 700; display: block; }
+    .model-spec-item small { color: var(--holo-text); opacity: 0.7; font-size: 8px; }
+
+    /* Right Panel: Outfit Builder & Cart */
+    .panel-right {
+      background: var(--holo-panel);
+      border-left: 1px solid var(--holo-border);
+      padding: 24px 20px;
+      overflow-y: auto;
+      max-height: calc(100vh - 58px);
+      display: flex; flex-direction: column;
+    }
+
+    /* Combination Slots */
+    .combo-slots-container {
+      display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;
+    }
+    .combo-slot {
+      background: rgba(0, 240, 255, 0.04);
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      padding: 12px; display: flex; gap: 12px; align-items: center;
+      transition: all 0.2s; position: relative;
+    }
+    .combo-slot.filled {
+      border-color: var(--holo-cyan);
+      background: rgba(0, 240, 255, 0.08);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+    }
+    .combo-slot-img {
+      width: 60px; height: 75px; object-fit: cover;
+      border: 1px solid var(--holo-border); background: #0a1524; flex-shrink: 0;
+    }
+    .combo-slot-empty-icon {
+      width: 60px; height: 75px; border: 1px dashed rgba(0, 240, 255, 0.3);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(0, 240, 255, 0.35); font-size: 20px; flex-shrink: 0;
+    }
+    .combo-slot-info { flex: 1; min-width: 0; }
+    .combo-slot-badge {
+      font-family: 'Share Tech Mono', monospace; font-size: 9px;
+      color: var(--holo-cyan); letter-spacing: 1.5px; text-transform: uppercase;
+    }
+    .combo-slot-name {
+      font-size: 12px; font-weight: 700; color: #fff; margin: 2px 0;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .combo-slot-price { font-size: 13px; font-weight: 800; color: var(--holo-cyan); }
+    .combo-slot-remove {
+      background: none; border: none; color: rgba(255,255,255,0.4);
+      font-size: 16px; cursor: pointer; padding: 4px; transition: color 0.2s;
+    }
+    .combo-slot-remove:hover { color: #c0392b; }
+
+    /* Total & Bundle Savings */
+    .combo-financials {
+      background: rgba(0, 240, 255, 0.06); border: 1px solid var(--holo-border);
+      padding: 16px; margin-top: auto; margin-bottom: 16px;
+    }
+    .financial-row {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 12px; color: var(--holo-text); margin-bottom: 6px;
+    }
+    .bundle-discount-row { color: var(--holo-gold); font-weight: 700; font-family: 'Share Tech Mono', monospace; }
+    .combo-total-row {
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid var(--holo-border); padding-top: 10px; margin-top: 8px;
+    }
+    .combo-total-label { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+    .combo-total-val { font-size: 1.6rem; font-weight: 900; color: var(--holo-cyan); font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px; }
+
+    /* Action Buttons */
+    .btn-add-combo {
+      width: 100%; background: var(--holo-cyan); color: #020b14;
+      border: none; padding: 16px; font-size: 12px; font-weight: 800;
+      letter-spacing: 3px; text-transform: uppercase; cursor: pointer;
+      transition: all 0.25s; font-family: 'Inter', sans-serif; margin-bottom: 8px;
+    }
+    .btn-add-combo:hover:not(:disabled) {
+      background: #fff; box-shadow: 0 0 30px rgba(0, 240, 255, 0.8); transform: translateY(-2px);
+    }
+    .btn-add-combo:disabled {
+      background: rgba(0, 240, 255, 0.2); color: rgba(255,255,255,0.3); cursor: not-allowed;
+    }
+    .btn-clear-combo {
+      width: 100%; background: transparent; border: 1px solid var(--holo-border);
+      color: var(--holo-text); padding: 10px; font-size: 11px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.2s;
+    }
+    .btn-clear-combo:hover { border-color: var(--holo-cyan); color: #fff; }
+
+    /* Responsive */
+    @media (max-width: 1200px) {
+      .studio-layout { grid-template-columns: 320px 1fr 320px; }
+    }
+    @media (max-width: 992px) {
+      .studio-layout { grid-template-columns: 1fr; }
+      .panel-center { order: -1; }
+      .panel-left, .panel-right { max-height: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Studio Top Navigation -->
+<nav class="studio-topbar">
+  <div class="studio-topbar-left">
+    <a href="/" class="studio-logo">Soul <span>Clothing</span></a>
+    <span class="studio-badge">HOLOGRAM STUDIO v3.4</span>
+  </div>
+  <div class="studio-topbar-center">
+    <div class="status-dot"></div>
+    <span>QUANTUM HOLOGRAPHIC PROJECTION // ACTIVE</span>
+  </div>
+  <div class="studio-topbar-right">
+    <a href="/" class="studio-nav-btn">← Storefront</a>
+    <a href="/shop.html" class="studio-nav-btn">Full Shop</a>
+    <button class="studio-cart-btn" onclick="openCart()">
+      🛒 CART (<span id="cart-badge">0</span>)
+    </button>
+  </div>
+</nav>
+
+<!-- Main Hologram Studio -->
+<main class="studio-layout">
+
+  <!-- LEFT PANEL: Curated Outfits & Item Catalog -->
+  <aside class="panel-left">
+    <!-- Preset Combos -->
+    <div class="preset-combos-wrap">
+      <div class="panel-title">
+        <span>PRESET COMBOS</span>
+        <small style="color:var(--holo-gold);font-size:9px;">-15% BUNDLE</small>
+      </div>
+      <div class="preset-grid" id="preset-grid">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
+    <!-- Category Filter -->
+    <div class="panel-title">
+      <span>GARMENT CATALOG</span>
+      <span id="catalog-count-badge" style="font-size:9px;color:var(--holo-text)">35 ITEMS</span>
+    </div>
+
+    <div class="cat-tabs" id="cat-tabs">
+      <button class="cat-tab active" onclick="switchCategory('formal-shirt', this)">👔 Formal Shirts</button>
+      <button class="cat-tab" onclick="switchCategory('dress', this)">👗 New Dresses</button>
+      <button class="cat-tab" onclick="switchCategory('pants', this)">👖 Gurkha & Pants</button>
+      <button class="cat-tab" onclick="switchCategory('shirts', this)">👕 Resort & Prints</button>
+      <button class="cat-tab" onclick="switchCategory('sneakers', this)">👟 Footwear</button>
+      <button class="cat-tab" onclick="switchCategory('all', this)">✨ All Pieces</button>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="catalog-grid" id="catalog-grid">
+      <!-- Injected by JS -->
+    </div>
+  </aside>
+
+  <!-- CENTER PANEL: Hologram Chamber -->
+  <section class="panel-center">
+    <!-- Controls Bar -->
+    <div class="chamber-controls-bar">
+      <div class="gender-switch">
+        <button class="gender-switch-btn active" id="btn-male" onclick="switchModel('male')">♂ AGENT KAI</button>
+        <button class="gender-switch-btn" id="btn-female" onclick="switchModel('female')">♀ AGENT LUNA</button>
+      </div>
+      <div class="angle-selector">
+        <button class="angle-btn active" onclick="switchAngle('front', this)">FRONT</button>
+        <button class="angle-btn" onclick="switchAngle('angle', this)">45° ANGLE</button>
+        <button class="angle-btn" onclick="switchAngle('macro', this)">FABRIC MACRO</button>
+      </div>
+    </div>
+
+    <!-- Viewport Chamber -->
+    <div class="holo-viewport">
+      <!-- Reticle Corners -->
+      <div class="holo-reticle reticle-tl"></div>
+      <div class="holo-reticle reticle-tr"></div>
+      <div class="holo-reticle reticle-bl"></div>
+      <div class="holo-reticle reticle-br"></div>
+
+      <!-- Laser Sweep -->
+      <div class="holo-sweep-beam"></div>
+
+      <!-- Rotating Floor Projection -->
+      <div class="holo-floor-projection"></div>
+
+      <!-- Top Metadata Header -->
+      <div class="holo-meta-header">
+        <div>
+          INFINITE AURA // STUDIO 01<br>
+          <span style="color:var(--holo-cyan)" id="holo-subj-code">SUBJECT: M-01 KAI</span><br>
+          SYSTEM: CUT & SEW 480nm
+        </div>
+        <div class="holo-meta-right">
+          COORD: 28.6139° N, 77.2090° E<br>
+          SPECTRAL: CYAN EMISSION<br>
+          STATUS: <span style="color:var(--holo-cyan)">LOCKED</span>
+        </div>
+      </div>
+
+      <!-- Model Container -->
+      <div class="holo-model-container">
+        <img id="holo-model-img" class="holo-model-img" src="https://images.unsplash.com/photo-1617952236317-0bd127407984?w=900&q=85" alt="Hologram Model">
+      </div>
+
+      <!-- Dynamic Hologram Callout HUD -->
+      <div class="holo-hud-callouts" id="holo-callouts">
+        <!-- Injected dynamically by JS -->
+      </div>
+
+      <!-- Bottom Metadata Footer -->
+      <div class="holo-meta-footer">
+        <span id="holo-layer-status">AWAITING COMBINATION SELECTION</span>
+        <span id="holo-timestamp">LIVE STREAM</span>
+      </div>
+    </div>
+
+    <!-- Model Spec Bio Bar -->
+    <div class="model-bio-bar" id="model-bio-bar">
+      <div class="model-bio-left">
+        <h4 id="bio-model-name">AGENT KAI — EDITORIAL STREETWEAR & FORMAL</h4>
+        <p id="bio-model-desc">Sculpted Athletic Jawline • High-Contrast Skin Tone • Minimal Drape</p>
+      </div>
+      <div class="model-specs-strip" id="bio-model-specs">
+        <div class="model-spec-item"><span>6'1"</span><small>HEIGHT</small></div>
+        <div class="model-spec-item"><span>38.5"</span><small>CHEST</small></div>
+        <div class="model-spec-item"><span>30"</span><small>WAIST</small></div>
+        <div class="model-spec-item"><span>32"</span><small>INSEAM</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RIGHT PANEL: Outfit Builder & Checkout -->
+  <aside class="panel-right">
+    <div class="panel-title">
+      <span>YOUR CUSTOM COMBINATION</span>
+      <span id="active-items-count" style="color:var(--holo-cyan);font-size:10px;">0 / 3 SLOTS</span>
+    </div>
+
+    <!-- Slots Container -->
+    <div class="combo-slots-container">
+      <!-- Slot 1: Top or Dress -->
+      <div class="combo-slot" id="slot-top">
+        <div class="combo-slot-empty-icon" id="slot-top-empty">👔</div>
+        <img class="combo-slot-img" id="slot-top-img" style="display:none;" alt="">
+        <div class="combo-slot-info">
+          <div class="combo-slot-badge">UPPER / FORMAL BODY</div>
+          <div class="combo-slot-name" id="slot-top-name">Empty (Select Formal Shirt or Dress)</div>
+          <div class="combo-slot-price" id="slot-top-price">₹0</div>
+        </div>
+        <button class="combo-slot-remove" id="slot-top-remove" style="display:none;" onclick="removeSlot('top')">✕</button>
+      </div>
+
+      <!-- Slot 2: Bottom -->
+      <div class="combo-slot" id="slot-bottom">
+        <div class="combo-slot-empty-icon" id="slot-bottom-empty">👖</div>
+        <img class="combo-slot-img" id="slot-bottom-img" style="display:none;" alt="">
+        <div class="combo-slot-info">
+          <div class="combo-slot-badge">LOWER / TAILORED DRAPE</div>
+          <div class="combo-slot-name" id="slot-bottom-name">Empty (Select Gurkha or Pants)</div>
+          <div class="combo-slot-price" id="slot-bottom-price">₹0</div>
+        </div>
+        <button class="combo-slot-remove" id="slot-bottom-remove" style="display:none;" onclick="removeSlot('bottom')">✕</button>
+      </div>
+
+      <!-- Slot 3: Footwear -->
+      <div class="combo-slot" id="slot-shoes">
+        <div class="combo-slot-empty-icon" id="slot-shoes-empty">👟</div>
+        <img class="combo-slot-img" id="slot-shoes-img" style="display:none;" alt="">
+        <div class="combo-slot-info">
+          <div class="combo-slot-badge">FOOTWEAR / FINISH</div>
+          <div class="combo-slot-name" id="slot-shoes-name">Empty (Select Shoes)</div>
+          <div class="combo-slot-price" id="slot-shoes-price">₹0</div>
+        </div>
+        <button class="combo-slot-remove" id="slot-shoes-remove" style="display:none;" onclick="removeSlot('shoes')">✕</button>
+      </div>
+    </div>
+
+    <!-- Financial Breakdown -->
+    <div class="combo-financials">
+      <div class="financial-row">
+        <span>Subtotal (Selected Items)</span>
+        <span id="fin-subtotal">₹0</span>
+      </div>
+      <div class="financial-row bundle-discount-row" id="fin-discount-row" style="display:none;">
+        <span>Combo Bundle Perk (-15%)</span>
+        <span id="fin-discount">-₹0</span>
+      </div>
+      <div class="financial-row" style="font-size:11px;">
+        <span>Estimated Shipping</span>
+        <span style="color:#2ecc71;">FREE EXPRESS</span>
+      </div>
+      <div class="combo-total-row">
+        <span class="combo-total-label">OUTFIT TOTAL</span>
+        <span class="combo-total-val" id="fin-total">₹0</span>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <button class="btn-add-combo" id="btn-add-combo" onclick="addCombinationToCart()" disabled>
+      ⚡ ADD COMPLETE COMBO TO CART
+    </button>
+    <button class="btn-clear-combo" onclick="clearCombination()">
+      RESET COMBINATION
+    </button>
+  </aside>
+
+</main>
+
+<!-- Cart Sidebar (Linked with app.js) -->
+<div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+<aside id="cart-sidebar">
+  <div class="cart-header">
+    <h3>YOUR BAG</h3>
+    <button class="cart-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cart-items">
+    <div class="cart-empty">Your shopping bag is empty.</div>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-subtotal">
+      <span>Subtotal</span>
+      <span id="cart-subtotal">₹0</span>
+    </div>
+    <div class="cart-total">
+      <span>Total</span>
+      <span id="cart-total">₹0</span>
+    </div>
+    <a href="/checkout.html" class="cart-checkout-btn">PROCEED TO CHECKOUT</a>
+  </div>
+</aside>
+
+<div id="toast-container"></div>
+
+<!-- Core App Logic -->
+<script type="module" src="/js/app.js"></script>
+<script>
+/* ========================================================
+   HOLOGRAM STUDIO LOGIC & DATA ENGINE
+   ======================================================== */
+
+const MODELS_DATA = {
+  male: {
+    name: 'AGENT KAI',
+    title: 'AGENT KAI — EDITORIAL STREETWEAR & FORMAL',
+    desc: 'Sculpted Athletic Jawline • High-Contrast Skin Tone • Minimal Drape',
+    code: 'SUBJECT: M-01 KAI',
+    specs: { height: "6'1\"", chest: '38.5\"', waist: '30\"', inseam: '32\"' },
+    images: {
+      front: 'https://images.unsplash.com/photo-1617952236317-0bd127407984?w=900&q=85',
+      angle: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=900&q=85',
+      macro: 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=900&q=85'
+    }
+  },
+  female: {
+    name: 'AGENT LUNA',
+    title: 'AGENT LUNA — NOIR AVANT-GARDE & DRESSES',
+    desc: 'Editorial Runway Posture • Long Dark Hair • Fluid Liquid Drapes',
+    code: 'SUBJECT: F-01 LUNA',
+    specs: { height: "5'9\"", chest: '33\"', waist: '25\"', inseam: '34\"' },
+    images: {
+      front: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=900&q=85',
+      angle: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=900&q=85',
+      macro: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=900&q=85'
+    }
+  }
+};
+
+const PRESET_COMBOS = [
+  {
+    id: 'P01',
+    name: 'The Executive Sovereign',
+    desc: 'Classic White Shirt + Gurkha Pant + Street Runner',
+    gender: 'male',
+    topId: 'FS001',
+    bottomId: 'GUR001',
+    shoesId: 'SNK002'
+  },
+  {
+    id: 'P02',
+    name: 'Liquid Maroon Night',
+    desc: 'Maroon Satin Shirt + Japanese Bootcut Gurkha',
+    gender: 'male',
+    topId: 'FS009',
+    bottomId: 'GUR001',
+    shoesId: 'SNK001'
+  },
+  {
+    id: 'P03',
+    name: 'Gothic Velvet Gala',
+    desc: 'Noir Velvet Slip Dress + Platform Low',
+    gender: 'female',
+    topId: 'DRS001',
+    bottomId: null,
+    shoesId: 'SNK004'
+  },
+  {
+    id: 'P04',
+    name: 'Cyberpunk Blazer Chic',
+    desc: 'Structured Cyber Blazer Dress + Soul Runner',
+    gender: 'female',
+    topId: 'DRS002',
+    bottomId: null,
+    shoesId: 'SNK002'
+  }
+];
+
+let currentGender = 'male';
+let currentAngle = 'front';
+let currentCategory = 'formal-shirt';
+let allProducts = [];
+let currentLook = { top: null, bottom: null, shoes: null };
+
+// Init
+document.addEventListener('DOMContentLoaded', async () => {
+  renderPresets();
+  await fetchProducts();
+  startClock();
+});
+
+function startClock() {
+  setInterval(() => {
+    const el = document.getElementById('holo-timestamp');
+    if (el) el.textContent = new Date().toISOString().substring(11, 19) + ' UTC';
+  }, 1000);
+}
+
+async function fetchProducts() {
+  try {
+    const res = await fetch('/api/products');
+    const data = await res.json();
+    allProducts = data.data || [];
+    renderCatalog();
+    const countBadge = document.getElementById('catalog-count-badge');
+    if (countBadge) countBadge.textContent = allProducts.length + ' PIECES';
+  } catch (err) {
+    console.error('Failed to fetch products:', err);
+  }
+}
+
+function renderPresets() {
+  const container = document.getElementById('preset-grid');
+  container.innerHTML = PRESET_COMBOS.map(p => `
+    <div class="preset-card" onclick="applyPreset('${p.id}')">
+      <div class="preset-tag">${p.gender === 'male' ? '♂ MALE' : '♀ FEMALE'} PRESET</div>
+      <div class="preset-name">${p.name}</div>
+      <div class="preset-desc">${p.desc}</div>
+    </div>
+  `).join('');
+}
+
+function switchModel(gender) {
+  currentGender = gender;
+  document.getElementById('btn-male').classList.toggle('active', gender === 'male');
+  document.getElementById('btn-female').classList.toggle('active', gender === 'female');
+
+  const model = MODELS_DATA[gender];
+  document.getElementById('holo-subj-code').textContent = model.code;
+  document.getElementById('bio-model-name').textContent = model.title;
+  document.getElementById('bio-model-desc').textContent = model.desc;
+  document.getElementById('bio-model-specs').innerHTML = `
+    <div class="model-spec-item"><span>${model.specs.height}</span><small>HEIGHT</small></div>
+    <div class="model-spec-item"><span>${model.specs.chest}</span><small>CHEST</small></div>
+    <div class="model-spec-item"><span>${model.specs.waist}</span><small>WAIST</small></div>
+    <div class="model-spec-item"><span>${model.specs.inseam}</span><small>INSEAM</small></div>
+  `;
+
+  updateModelImage();
+  renderCatalog();
+}
+
+function switchAngle(angle, btn) {
+  currentAngle = angle;
+  document.querySelectorAll('.angle-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  updateModelImage();
+}
+
+function updateModelImage() {
+  const img = document.getElementById('holo-model-img');
+  img.style.opacity = '0';
+  img.style.transform = 'scale(0.96)';
+  setTimeout(() => {
+    img.src = MODELS_DATA[currentGender].images[currentAngle];
+    img.style.opacity = '1';
+    img.style.transform = 'scale(1)';
+  }, 250);
+}
+
+function switchCategory(cat, btn) {
+  currentCategory = cat;
+  document.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderCatalog();
+}
+
+function renderCatalog() {
+  const grid = document.getElementById('catalog-grid');
+  let items = allProducts.filter(p => {
+    // Gender match
+    const pGen = (p.gender || '').toLowerCase();
+    const matchesGender = pGen === 'unisex' || pGen === (currentGender === 'male' ? 'men' : 'women');
+
+    // Category match
+    if (currentCategory === 'all') return matchesGender;
+    if (currentCategory === 'formal-shirt') return p.category === 'formal-shirt' && matchesGender;
+    if (currentCategory === 'dress') return p.category === 'dress';
+    if (currentCategory === 'pants') return (p.category === 'pants' || p.category === 'jeans') && matchesGender;
+    if (currentCategory === 'shirts') return (p.category === 'shirts' || p.category === 't-shirts') && matchesGender;
+    if (currentCategory === 'sneakers') return p.category === 'sneakers';
+    return p.category === currentCategory && matchesGender;
+  });
+
+  if (!items.length) {
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:30px 10px;color:var(--holo-text);font-family:\'Share Tech Mono\',monospace;font-size:11px;">NO GARMENTS IN THIS FILTER</div>';
+    return;
+  }
+
+  grid.innerHTML = items.map(p => {
+    const isSelected = (currentLook.top && currentLook.top.id === p.id) ||
+                       (currentLook.bottom && currentLook.bottom.id === p.id) ||
+                       (currentLook.shoes && currentLook.shoes.id === p.id);
+    const disc = p.originalPrice > p.price ? Math.round((1 - p.price / p.originalPrice) * 100) : null;
+    const img = p.images && p.images[0] ? p.images[0] : '';
+
+    return `
+      <div class="catalog-card ${isSelected ? 'active' : ''}" onclick="selectProduct('${p.id}')">
+        <div class="catalog-card-img-wrap">
+          ${disc ? `<span class="catalog-badge-disc">-${disc}%</span>` : ''}
+          <div class="catalog-badge-active">✓</div>
+          <img src="${img}" alt="${p.name}" loading="lazy">
+        </div>
+        <div class="catalog-card-body">
+          <div class="catalog-card-spec">${p.specId || p.category.toUpperCase()}</div>
+          <div class="catalog-card-title">${p.name}</div>
+          <div class="catalog-card-price-row">
+            <span class="catalog-card-price">₹${p.price.toLocaleString('en-IN')}</span>
+            ${p.originalPrice > p.price ? `<span class="catalog-card-orig">₹${p.originalPrice.toLocaleString('en-IN')}</span>` : ''}
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function selectProduct(id) {
+  const p = allProducts.find(item => item.id === id);
+  if (!p) return;
+
+  // Determine slot
+  let slot = 'top';
+  if (p.category === 'pants' || p.category === 'jeans') {
+    slot = 'bottom';
+  } else if (p.category === 'sneakers') {
+    slot = 'shoes';
+  } else if (p.category === 'dress') {
+    slot = 'top';
+    currentLook.bottom = null; // Dress occupies whole body
+  }
+
+  // Toggle or Set
+  if (currentLook[slot] && currentLook[slot].id === p.id) {
+    currentLook[slot] = null;
+  } else {
+    currentLook[slot] = p;
+  }
+
+  updateLookUI();
+}
+
+function removeSlot(slot) {
+  currentLook[slot] = null;
+  updateLookUI();
+}
+
+function clearCombination() {
+  currentLook = { top: null, bottom: null, shoes: null };
+  updateLookUI();
+}
+
+function applyPreset(presetId) {
+  const preset = PRESET_COMBOS.find(p => p.id === presetId);
+  if (!preset) return;
+
+  if (currentGender !== preset.gender) {
+    switchModel(preset.gender);
+  }
+
+  currentLook.top = allProducts.find(p => p.id === preset.topId) || null;
+  currentLook.bottom = preset.bottomId ? (allProducts.find(p => p.id === preset.bottomId) || null) : null;
+  currentLook.shoes = preset.shoesId ? (allProducts.find(p => p.id === preset.shoesId) || null) : null;
+
+  updateLookUI();
+}
+
+function updateLookUI() {
+  renderCatalog();
+  renderSlots();
+  renderHoloCallouts();
+  renderFinancials();
+}
+
+function renderSlots() {
+  const slots = [
+    { key: 'top', name: 'UPPER / FORMAL BODY', defaultText: 'Empty (Select Shirt or Dress)' },
+    { key: 'bottom', name: 'LOWER / TAILORED DRAPE', defaultText: currentLook.top && currentLook.top.category === 'dress' ? 'Covered by Dress Silhouette' : 'Empty (Select Gurkha or Pants)' },
+    { key: 'shoes', name: 'FOOTWEAR / FINISH', defaultText: 'Empty (Select Shoes)' }
+  ];
+
+  let filledCount = 0;
+
+  slots.forEach(s => {
+    const item = currentLook[s.key];
+    const slotEl = document.getElementById(`slot-${s.key}`);
+    const emptyEl = document.getElementById(`slot-${s.key}-empty`);
+    const imgEl = document.getElementById(`slot-${s.key}-img`);
+    const nameEl = document.getElementById(`slot-${s.key}-name`);
+    const priceEl = document.getElementById(`slot-${s.key}-price`);
+    const removeBtn = document.getElementById(`slot-${s.key}-remove`);
+
+    if (item) {
+      filledCount++;
+      slotEl.classList.add('filled');
+      emptyEl.style.display = 'none';
+      imgEl.style.display = 'block';
+      imgEl.src = item.images && item.images[0] ? item.images[0] : '';
+      nameEl.textContent = item.name;
+      priceEl.textContent = `₹${item.price.toLocaleString('en-IN')}`;
+      removeBtn.style.display = 'block';
+    } else {
+      slotEl.classList.remove('filled');
+      emptyEl.style.display = 'flex';
+      imgEl.style.display = 'none';
+      nameEl.textContent = s.defaultText;
+      priceEl.textContent = '₹0';
+      removeBtn.style.display = 'none';
+    }
+  });
+
+  document.getElementById('active-items-count').textContent = `${filledCount} / 3 SLOTS`;
+  document.getElementById('btn-add-combo').disabled = filledCount === 0;
+
+  const statusEl = document.getElementById('holo-layer-status');
+  if (filledCount === 0) {
+    statusEl.textContent = 'AWAITING COMBINATION SELECTION';
+  } else if (filledCount === 3 || (currentLook.top && currentLook.top.category === 'dress' && currentLook.shoes)) {
+    statusEl.textContent = '✨ COMPLETE COMBINATION HARMONIZED';
+  } else {
+    statusEl.textContent = `PROJECTION SYNTHESIS (${filledCount} GARMENTS LOADED)`;
+  }
+}
+
+function renderHoloCallouts() {
+  const container = document.getElementById('holo-callouts');
+  let html = '';
+
+  if (currentLook.top) {
+    html += `
+      <div class="holo-callout top-callout">
+        <div class="holo-callout-label">${currentLook.top.category.toUpperCase()}</div>
+        <div class="holo-callout-value">${currentLook.top.name}</div>
+        <div class="holo-callout-spec">${currentLook.top.details ? currentLook.top.details[0] : '360 GSM Tailored Weave'}</div>
+      </div>
+    `;
+  }
+
+  if (currentLook.bottom) {
+    html += `
+      <div class="holo-callout bottom-callout">
+        <div class="holo-callout-label">PANTS / SILHOUETTE</div>
+        <div class="holo-callout-value">${currentLook.bottom.name}</div>
+        <div class="holo-callout-spec">${currentLook.bottom.details ? currentLook.bottom.details[0] : 'Japanese Bootcut Twill'}</div>
+      </div>
+    `;
+  }
+
+  if (currentLook.shoes) {
+    html += `
+      <div class="holo-callout shoes-callout">
+        <div class="holo-callout-label">FOOTWEAR</div>
+        <div class="holo-callout-value">${currentLook.shoes.name}</div>
+        <div class="holo-callout-spec">Vulcanized Precision Sole</div>
+      </div>
+    `;
+  }
+
+  container.innerHTML = html;
+}
+
+function renderFinancials() {
+  const items = Object.values(currentLook).filter(Boolean);
+  const subtotal = items.reduce((sum, p) => sum + p.price, 0);
+
+  // 15% discount for 2+ items
+  const isBundle = items.length >= 2;
+  const discount = isBundle ? Math.round(subtotal * 0.15) : 0;
+  const total = subtotal - discount;
+
+  document.getElementById('fin-subtotal').textContent = `₹${subtotal.toLocaleString('en-IN')}`;
+
+  const discRow = document.getElementById('fin-discount-row');
+  if (isBundle) {
+    discRow.style.display = 'flex';
+    document.getElementById('fin-discount').textContent = `-₹${discount.toLocaleString('en-IN')}`;
+  } else {
+    discRow.style.display = 'none';
+  }
+
+  document.getElementById('fin-total').textContent = `₹${total.toLocaleString('en-IN')}`;
+}
+
+function addCombinationToCart() {
+  const items = Object.values(currentLook).filter(Boolean);
+  if (!items.length) return;
+
+  items.forEach(item => {
+    const size = (item.sizes && item.sizes[1]) || (item.sizes && item.sizes[0]) || 'M';
+    if (window.Cart) {
+      window.Cart.add(item, size);
+    }
+  });
+
+  if (window.showToast) {
+    window.showToast('✨ Outfit Combination added to your Bag!', '🎉');
+  }
+
+  if (typeof openCart === 'function') {
+    openCart();
+  }
+}
+
+window.switchModel = switchModel;
+window.switchAngle = switchAngle;
+window.switchCategory = switchCategory;
+window.selectProduct = selectProduct;
+window.removeSlot = removeSlot;
+window.clearCombination = clearCombination;
+window.applyPreset = applyPreset;
+window.addCombinationToCart = addCombinationToCart;
+</script>
+</body>
+</html>

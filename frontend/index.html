@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soul Clothing — Wear The Soul. Own The Street.</title>
+  <meta name="description" content="Soul Clothing — Premium streetwear. New arrivals, best sellers, upcoming events. Shop now.">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    /* ── MARQUEE TICKER ── */
+    .ticker-wrap { background:#111; overflow:hidden; padding:12px 0; border-top:1px solid #222; border-bottom:1px solid #222; }
+    .ticker-track { display:flex; gap:0; animation:tickerScroll 25s linear infinite; width:max-content; }
+    .ticker-item { display:flex; align-items:center; gap:10px; padding:0 40px; white-space:nowrap; font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#fff; }
+    .ticker-dot { width:5px; height:5px; background:#c0392b; border-radius:50%; }
+    @keyframes tickerScroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    /* ── HERO ── */
+    #hero { position:relative; min-height:92vh; display:flex; align-items:center; justify-content:center; overflow:hidden; background:#0a0a0a; }
+    .hero-mosaic { position:absolute; inset:0; display:grid; grid-template-columns:repeat(5,1fr); grid-template-rows:repeat(3,1fr); }
+    .hero-mosaic img { width:100%; height:100%; object-fit:cover; filter:grayscale(30%) brightness(0.7); transition:filter 3s ease; }
+    .hero-mosaic img:hover { filter:grayscale(0%) brightness(0.8); }
+    .hero-overlay { position:absolute; inset:0; background:linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.7) 100%); z-index:1; }
+    .hero-content { position:relative; z-index:2; text-align:center; padding:0 24px; max-width:1000px; }
+    .hero-eyebrow { font-size:10px; letter-spacing:6px; color:rgba(255,255,255,0.6); text-transform:uppercase; font-weight:600; margin-bottom:20px; display:block; }
+    .hero-brand { font-family:'Cinzel Decorative',serif; font-size:clamp(2.2rem,7vw,5.5rem); color:#fff; font-weight:900; line-height:1.1; margin-bottom:12px; letter-spacing:4px; text-transform:uppercase; text-shadow:0 4px 30px rgba(0,0,0,0.5); }
+    .hero-tagline { font-size:clamp(0.85rem,1.5vw,1rem); color:rgba(255,255,255,0.75); letter-spacing:4px; text-transform:uppercase; font-weight:400; margin-bottom:36px; }
+    .hero-cta-row { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+    .hero-cta { display:inline-block; border:2px solid #fff; color:#fff; background:transparent; padding:14px 48px; font-size:11px; font-weight:700; letter-spacing:4px; text-transform:uppercase; cursor:pointer; transition:all 0.25s ease; text-decoration:none; }
+    .hero-cta:hover { background:#fff; color:#111; }
+    .hero-cta-fill { display:inline-block; border:2px solid #fff; color:#111; background:#fff; padding:14px 48px; font-size:11px; font-weight:700; letter-spacing:4px; text-transform:uppercase; cursor:pointer; transition:all 0.25s ease; text-decoration:none; }
+    .hero-cta-fill:hover { background:transparent; color:#fff; }
+    .hero-bottom-strip { position:absolute; bottom:0; left:0; right:0; z-index:3; display:flex; justify-content:center; background:rgba(0,0,0,0.6); border-top:1px solid rgba(255,255,255,0.1); }
+    .hero-bottom-strip a { color:rgba(255,255,255,0.7); font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; padding:14px 24px; border-right:1px solid rgba(255,255,255,0.1); transition:color 0.2s,background 0.2s; }
+    .hero-bottom-strip a:last-child { border-right:none; }
+    .hero-bottom-strip a:hover { color:#fff; background:rgba(255,255,255,0.05); }
+
+    /* ── STATS STRIP ── */
+    .stats-strip { background:#f7f7f7; border-bottom:1px solid #e5e5e5; padding:28px 40px; display:grid; grid-template-columns:repeat(4,1fr); text-align:center; }
+    .stat-item { padding:16px; border-right:1px solid #e5e5e5; }
+    .stat-item:last-child { border-right:none; }
+    .stat-num { font-family:'Bebas Neue',sans-serif; font-size:2.5rem; color:#111; line-height:1; letter-spacing:2px; }
+    .stat-lbl { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#888; margin-top:4px; font-weight:600; }
+
+    /* ── EDITORIAL GRID (dark contact sheet style) ── */
+    .editorial-section { background:#0d0d0d; padding:70px 0; }
+    .editorial-header { text-align:center; margin-bottom:40px; }
+    .editorial-label { font-size:10px; letter-spacing:5px; color:#666; text-transform:uppercase; font-weight:700; display:block; margin-bottom:10px; }
+    .editorial-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(2.5rem,5vw,4rem); color:#fff; letter-spacing:4px; }
+    .editorial-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; padding:0 2px; }
+    .editorial-item { position:relative; overflow:hidden; aspect-ratio:3/4; cursor:pointer; }
+    .editorial-item img { width:100%; height:100%; object-fit:cover; filter:grayscale(20%); transition:filter 0.4s,transform 0.6s; }
+    .editorial-item:hover img { filter:grayscale(0%) brightness(1.05); transform:scale(1.04); }
+    .editorial-item-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(0,0,0,0.8) 0%,transparent 60%); display:flex; flex-direction:column; justify-content:flex-end; padding:18px; opacity:0; transition:opacity 0.3s; }
+    .editorial-item:hover .editorial-item-overlay { opacity:1; }
+    .editorial-item-name { font-size:13px; font-weight:700; color:#fff; letter-spacing:0.5px; }
+    .editorial-item-price { font-size:12px; color:rgba(255,255,255,0.75); margin-top:3px; }
+    /* metadata strip like contact sheet */
+    .editorial-meta { position:absolute; top:0; left:0; right:0; background:rgba(0,0,0,0.7); padding:6px 10px; display:flex; justify-content:space-between; font-size:9px; color:rgba(255,255,255,0.4); letter-spacing:1px; text-transform:uppercase; }
+
+    /* ── MARQUEE PRODUCTS ── */
+    .products-marquee-wrap { overflow:hidden; padding:0; background:#fff; }
+    .products-marquee-track { display:flex; gap:2px; animation:marqueeProducts 40s linear infinite; width:max-content; }
+    .products-marquee-track:hover { animation-play-state:paused; }
+    .marquee-card { width:240px; flex-shrink:0; position:relative; overflow:hidden; cursor:pointer; }
+    .marquee-card img { width:100%; height:320px; object-fit:cover; display:block; transition:transform 0.5s; }
+    .marquee-card:hover img { transform:scale(1.05); }
+    .marquee-card-info { padding:12px; background:#fff; border-top:1px solid #f0f0f0; }
+    .marquee-card-name { font-size:12px; font-weight:600; color:#111; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .marquee-card-price { font-size:13px; font-weight:700; color:#111; margin-top:3px; }
+    @keyframes marqueeProducts { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    /* ── BOLD CTA BANNER ── */
+    .cta-banner { background:#111; color:#fff; padding:80px 40px; text-align:center; position:relative; overflow:hidden; }
+    .cta-banner::before { content:''; position:absolute; top:-60%; left:-10%; width:120%; height:220%; background:radial-gradient(ellipse at center, rgba(192,57,43,0.15) 0%, transparent 65%); pointer-events:none; }
+    .cta-banner-label { font-size:10px; letter-spacing:5px; color:#c0392b; text-transform:uppercase; font-weight:700; margin-bottom:16px; display:block; }
+    .cta-banner-title { font-family:'Cinzel Decorative',serif; font-size:clamp(2rem,5vw,4rem); font-weight:700; letter-spacing:4px; margin-bottom:16px; }
+    .cta-banner-sub { font-size:14px; color:rgba(255,255,255,0.6); letter-spacing:2px; text-transform:uppercase; margin-bottom:36px; }
+
+    /* ── SECTION DIVIDER TEXT ── */
+    .giant-text { font-family:'Bebas Neue',sans-serif; font-size:clamp(4rem,12vw,9rem); color:transparent; -webkit-text-stroke:1px rgba(0,0,0,0.08); letter-spacing:6px; text-transform:uppercase; text-align:center; line-height:1; pointer-events:none; user-select:none; overflow:hidden; }
+
+    /* ── FEATURES ROW ── */
+    .features-strip { display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid #e5e5e5; border-bottom:1px solid #e5e5e5; }
+    .feature-item { padding:28px 20px; text-align:center; border-right:1px solid #e5e5e5; }
+    .feature-item:last-child { border-right:none; }
+    .feature-icon { font-size:1.8rem; margin-bottom:10px; display:block; }
+    .feature-title { font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#111; margin-bottom:4px; }
+    .feature-desc { font-size:12px; color:#888; }
+
+    /* ── FADE IN ANIMATION ── */
+    @keyframes fadeInUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+    .fade-in { animation:fadeInUp 0.6s ease both; }
+    @media(max-width:900px) {
+      .editorial-grid { grid-template-columns:repeat(2,1fr); }
+      .stats-strip { grid-template-columns:repeat(2,1fr); }
+      .features-strip { grid-template-columns:repeat(2,1fr); }
+      .hero-bottom-strip a { padding:12px 14px; font-size:10px; letter-spacing:1px; }
+    }
+    @media(max-width:600px) {
+      .editorial-grid { grid-template-columns:repeat(2,1fr); }
+      .stats-strip { grid-template-columns:1fr 1fr; }
+      .stat-item { padding:12px 8px; }
+      .hero-brand { font-size:2rem; letter-spacing:2px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Announcement Bar ──────────────────────────────── -->
+<div id="announcement-bar">✦ FREE SHIPPING ABOVE ₹999 &nbsp;·&nbsp; USE CODE: <strong>SOUL10</strong> FOR 10% OFF &nbsp;·&nbsp; NEW DROPS EVERY FRIDAY ✦</div>
+
+<!-- ── Navbar ─────────────────────────────────────────── -->
+<nav class="navbar">
+  <div class="nav-top">
+    <div class="nav-search">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="global-search" placeholder="Search products..." autocomplete="off">
+    </div>
+    <a href="/" class="nav-logo">Soul Clothing</a>
+    <div class="nav-actions">
+      <a href="/admin.html" style="font-size:10px;letter-spacing:1px;color:#888">ADMIN</a>
+      <a href="#" onclick="openCart(); return false;">
+        <button class="nav-cart-btn">🛒 CART <span class="cart-count" id="cart-badge">0</span></button>
+      </a>
+    </div>
+  </div>
+  <div class="nav-bottom">
+    <ul>
+      <li><a href="#new-arrivals">NEW ARRIVALS</a></li>
+      <li class="sep">|</li>
+      <li><a href="/shop.html?cat=formal-shirt">FORMAL</a></li>
+      <li class="sep">|</li>
+      <li><a href="/shop.html?cat=dress">DRESSES</a></li>
+      <li class="sep">|</li>
+      <li><a href="/shop.html?cat=tshirt">T-SHIRTS</a></li>
+      <li class="sep">|</li>
+      <li><a href="/shop.html?cat=polo">POLO</a></li>
+      <li class="sep">|</li>
+      <li><a href="/shop.html?cat=shirt">SHIRTS</a></li>
+      <li class="sep">|</li>
+      <li><a href="/shop.html?cat=jeans">JEANS</a></li>
+      <li class="sep">|</li>
+      <li><a href="/shop.html?cat=pants">PANTS</a></li>
+      <li class="sep">|</li>
+      <li><a href="/shop.html?cat=sneakers">SNEAKERS</a></li>
+      <li class="sep">|</li>
+      <li class="nav-outfit-studio"><a href="/showcase.html" style="color:#00e5ff !important;font-weight:800;">⚡ HOLOGRAM STUDIO</a></li>
+      <li class="sep">|</li>
+      <li class="nav-best-offers"><a href="#offers-section">🔥 BEST OFFERS</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── Hero ───────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-mosaic">
+    <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=400&q=80" alt="">
+    <img src="https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=400&q=80" alt="">
+    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=400&q=80" alt="">
+    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&q=80" alt="">
+    <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=400&q=80" alt="">
+    <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=400&q=80" alt="">
+    <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?w=400&q=80" alt="">
+    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400&q=80" alt="">
+    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&q=80" alt="">
+    <img src="https://images.unsplash.com/photo-1467043237213-65f2da53396f?w=400&q=80" alt="">
+    <img src="https://images.unsplash.com/photo-1542060748-10c28b62716f?w=400&q=80" alt="">
+    <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=400&q=80" alt="">
+    <img src="https://images.unsplash.com/photo-1495121553079-4c61bcce1894?w=400&q=80" alt="">
+    <img src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=400&q=80" alt="">
+    <img src="https://images.unsplash.com/photo-1610397648930-477b8c7f0943?w=400&q=80" alt="">
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content fade-in">
+    <span class="hero-eyebrow">New Collection 2024</span>
+    <div class="hero-brand">Soul Clothing</div>
+    <div class="hero-tagline">Wear The Soul &nbsp;·&nbsp; Own The Street</div>
+    <div class="hero-cta-row">
+      <a href="/shop.html" class="hero-cta-fill">EXPLORE COLLECTION</a>
+      <a href="/showcase.html" class="hero-cta" style="border-color:#00e5ff;color:#00e5ff;text-shadow:0 0 10px rgba(0,229,255,0.4);">⚡ HOLOGRAM STUDIO</a>
+      <a href="#new-arrivals" class="hero-cta">NEW ARRIVALS</a>
+    </div>
+  </div>
+  <div class="hero-bottom-strip">
+    <a href="/shop.html?cat=tshirt">T-Shirts</a>
+    <a href="/shop.html?cat=shirt">Shirts</a>
+    <a href="/shop.html?cat=jeans">Jeans</a>
+    <a href="/shop.html?cat=pants">Pants</a>
+    <a href="/shop.html?cat=sneakers">Sneakers</a>
+    <a href="/shop.html">View All →</a>
+  </div>
+</section>
+
+<!-- ── Ticker ──────────────────────────────────────────── -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <div class="ticker-item"><span class="ticker-dot"></span> NEW DROPS EVERY FRIDAY</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> FREE SHIPPING ABOVE ₹999</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> SOUL CLOTHING — WEAR THE SOUL</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> PREMIUM STREETWEAR</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> USE CODE: SOUL10</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> OWN THE STREET</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> NEW DROPS EVERY FRIDAY</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> FREE SHIPPING ABOVE ₹999</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> SOUL CLOTHING — WEAR THE SOUL</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> PREMIUM STREETWEAR</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> USE CODE: SOUL10</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> OWN THE STREET</div>
+  </div>
+</div>
+
+<!-- ── Stats Strip ────────────────────────────────────── -->
+<div class="stats-strip">
+  <div class="stat-item">
+    <div class="stat-num" id="stat-products-count">500+</div>
+    <div class="stat-lbl">Products</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">10K+</div>
+    <div class="stat-lbl">Happy Customers</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">50+</div>
+    <div class="stat-lbl">New Styles Weekly</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">4.8★</div>
+    <div class="stat-lbl">Avg Rating</div>
+  </div>
+</div>
+
+<!-- ── New Arrivals ────────────────────────────────────── -->
+<section style="padding:70px 40px;background:#fff;" id="new-arrivals">
+  <div class="section-header">
+    <span class="section-label">Just Dropped</span>
+    <h2 class="section-title">NEW ARRIVALS</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="products-grid products-grid-5" id="new-arrivals-grid">
+    <div class="product-card"><div class="product-card-image skeleton" style="aspect-ratio:3/4"></div><div class="product-card-body"><div class="skeleton" style="height:13px;width:70%;margin-bottom:8px;border-radius:2px"></div><div class="skeleton" style="height:15px;width:40%;border-radius:2px"></div></div></div>
+    <div class="product-card"><div class="product-card-image skeleton" style="aspect-ratio:3/4"></div><div class="product-card-body"><div class="skeleton" style="height:13px;width:70%;margin-bottom:8px;border-radius:2px"></div><div class="skeleton" style="height:15px;width:40%;border-radius:2px"></div></div></div>
+    <div class="product-card"><div class="product-card-image skeleton" style="aspect-ratio:3/4"></div><div class="product-card-body"><div class="skeleton" style="height:13px;width:70%;margin-bottom:8px;border-radius:2px"></div><div class="skeleton" style="height:15px;width:40%;border-radius:2px"></div></div></div>
+    <div class="product-card"><div class="product-card-image skeleton" style="aspect-ratio:3/4"></div><div class="product-card-body"><div class="skeleton" style="height:13px;width:70%;margin-bottom:8px;border-radius:2px"></div><div class="skeleton" style="height:15px;width:40%;border-radius:2px"></div></div></div>
+    <div class="product-card"><div class="product-card-image skeleton" style="aspect-ratio:3/4"></div><div class="product-card-body"><div class="skeleton" style="height:13px;width:70%;margin-bottom:8px;border-radius:2px"></div><div class="skeleton" style="height:15px;width:40%;border-radius:2px"></div></div></div>
+  </div>
+  <div style="text-align:center;margin-top:40px;">
+    <a href="/shop.html?filter=new" class="btn-primary">VIEW ALL NEW ARRIVALS</a>
+  </div>
+</section>
+
+<!-- ── Giant Divider Text ─────────────────────────────── -->
+<div class="giant-text">Soul Clothing</div>
+
+<!-- ── Editorial Dark Grid (contact sheet style) ──────── -->
+<section class="editorial-section">
+  <div class="editorial-header">
+    <span class="editorial-label">The Drop</span>
+    <div class="editorial-title">EDITORIAL PICKS</div>
+  </div>
+  <div class="editorial-grid" id="editorial-grid">
+    <!-- JS-populated from best sellers -->
+    <div class="editorial-item">
+      <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=500&q=85" alt="Editorial 1">
+      <div class="editorial-meta"><span>SC-001</span><span>NEW</span></div>
+      <div class="editorial-item-overlay"><div class="editorial-item-name">Oversized Street Tee</div><div class="editorial-item-price">₹899</div></div>
+    </div>
+    <div class="editorial-item">
+      <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=500&q=85" alt="Editorial 2">
+      <div class="editorial-meta"><span>SC-002</span><span>HOT</span></div>
+      <div class="editorial-item-overlay"><div class="editorial-item-name">Slim Fit Dark Jeans</div><div class="editorial-item-price">₹1,299</div></div>
+    </div>
+    <div class="editorial-item">
+      <img src="https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=500&q=85" alt="Editorial 3">
+      <div class="editorial-meta"><span>SC-003</span><span>LIMITED</span></div>
+      <div class="editorial-item-overlay"><div class="editorial-item-name">Floral Wrap Shirt</div><div class="editorial-item-price">₹1,199</div></div>
+    </div>
+    <div class="editorial-item">
+      <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&q=85" alt="Editorial 4">
+      <div class="editorial-meta"><span>SC-004</span><span>DROP</span></div>
+      <div class="editorial-item-overlay"><div class="editorial-item-name">Wide Leg Trousers</div><div class="editorial-item-price">₹1,499</div></div>
+    </div>
+    <div class="editorial-item">
+      <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500&q=85" alt="Editorial 5">
+      <div class="editorial-meta"><span>SC-005</span><span>SALE</span></div>
+      <div class="editorial-item-overlay"><div class="editorial-item-name">Premium Polo</div><div class="editorial-item-price">₹799</div></div>
+    </div>
+    <div class="editorial-item">
+      <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=500&q=85" alt="Editorial 6">
+      <div class="editorial-meta"><span>SC-006</span><span>NEW</span></div>
+      <div class="editorial-item-overlay"><div class="editorial-item-name">Oxford Button Down</div><div class="editorial-item-price">₹1,099</div></div>
+    </div>
+    <div class="editorial-item">
+      <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=500&q=85" alt="Editorial 7">
+      <div class="editorial-meta"><span>SC-007</span><span>HOT</span></div>
+      <div class="editorial-item-overlay"><div class="editorial-item-name">Platform Sneaker</div><div class="editorial-item-price">₹2,499</div></div>
+    </div>
+    <div class="editorial-item">
+      <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?w=500&q=85" alt="Editorial 8">
+      <div class="editorial-meta"><span>SC-008</span><span>LAST FEW</span></div>
+      <div class="editorial-item-overlay"><div class="editorial-item-name">Graphic Tee</div><div class="editorial-item-price">₹699</div></div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:40px;">
+    <a href="/shop.html" class="hero-cta">SHOP ALL STYLES</a>
+  </div>
+</section>
+
+<!-- ── Bold CTA Banner ────────────────────────────────── -->
+<div class="cta-banner">
+  <span class="cta-banner-label">Limited Time</span>
+  <div class="cta-banner-title">Soul Clothing</div>
+  <div class="cta-banner-sub">New Season · New Identity · New You</div>
+  <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+    <a href="/shop.html" class="hero-cta-fill">SHOP NOW</a>
+    <span class="hero-cta" style="cursor:pointer" onclick="copyPromoCode('SOUL10')">GET 10% OFF: SOUL10</span>
+  </div>
+</div>
+
+<!-- ── Scrolling Product Strip ────────────────────────── -->
+<div class="products-marquee-wrap">
+  <div class="products-marquee-track" id="marquee-track">
+    <!-- Populated by JS, with fallback static items -->
+    <div class="marquee-card" onclick="window.location='/shop.html'">
+      <img src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?w=500&q=80" alt="">
+      <div class="marquee-card-info"><div class="marquee-card-name">Classic Black Tee</div><div class="marquee-card-price">₹699</div></div>
+    </div>
+    <div class="marquee-card" onclick="window.location='/shop.html'">
+      <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=500&q=80" alt="">
+      <div class="marquee-card-info"><div class="marquee-card-name">Slim Fit Jeans</div><div class="marquee-card-price">₹1,299</div></div>
+    </div>
+    <div class="marquee-card" onclick="window.location='/shop.html'">
+      <img src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=500&q=80" alt="">
+      <div class="marquee-card-info"><div class="marquee-card-name">Linen Shirt</div><div class="marquee-card-price">₹999</div></div>
+    </div>
+    <div class="marquee-card" onclick="window.location='/shop.html'">
+      <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=500&q=80" alt="">
+      <div class="marquee-card-info"><div class="marquee-card-name">White Sneakers</div><div class="marquee-card-price">₹2,199</div></div>
+    </div>
+    <div class="marquee-card" onclick="window.location='/shop.html'">
+      <img src="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=500&q=80" alt="">
+      <div class="marquee-card-info"><div class="marquee-card-name">Polo Shirt</div><div class="marquee-card-price">₹849</div></div>
+    </div>
+    <div class="marquee-card" onclick="window.location='/shop.html'">
+      <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=500&q=80" alt="">
+      <div class="marquee-card-info"><div class="marquee-card-name">Chino Pants</div><div class="marquee-card-price">₹1,099</div></div>
+    </div>
+    <!-- Duplicate for loop -->
+    <div class="marquee-card" onclick="window.location='/shop.html'">
+      <img src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?w=500&q=80" alt="">
+      <div class="marquee-card-info"><div class="marquee-card-name">Classic Black Tee</div><div class="marquee-card-price">₹699</div></div>
+    </div>
+    <div class="marquee-card" onclick="window.location='/shop.html'">
+      <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=500&q=80" alt="">
+      <div class="marquee-card-info"><div class="marquee-card-name">Slim Fit Jeans</div><div class="marquee-card-price">₹1,299</div></div>
+    </div>
+    <div class="marquee-card" onclick="window.location='/shop.html'">
+      <img src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=500&q=80" alt="">
+      <div class="marquee-card-info"><div class="marquee-card-name">Linen Shirt</div><div class="marquee-card-price">₹999</div></div>
+    </div>
+    <div class="marquee-card" onclick="window.location='/shop.html'">
+      <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=500&q=80" alt="">
+      <div class="marquee-card-info"><div class="marquee-card-name">White Sneakers</div><div class="marquee-card-price">₹2,199</div></div>
+    </div>
+    <div class="marquee-card" onclick="window.location='/shop.html'">
+      <img src="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=500&q=80" alt="">
+      <div class="marquee-card-info"><div class="marquee-card-name">Polo Shirt</div><div class="marquee-card-price">₹849</div></div>
+    </div>
+    <div class="marquee-card" onclick="window.location='/shop.html'">
+      <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=500&q=80" alt="">
+      <div class="marquee-card-info"><div class="marquee-card-name">Chino Pants</div><div class="marquee-card-price">₹1,099</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Best Sellers ────────────────────────────────────── -->
+<section style="padding:70px 40px;background:#f7f7f7;">
+  <div class="section-header">
+    <span class="section-label">Community Favourites</span>
+    <h2 class="section-title">BEST SELLERS</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="products-grid products-grid-5" id="best-sellers-grid">
+    <div class="product-card"><div class="product-card-image skeleton" style="aspect-ratio:3/4"></div><div class="product-card-body"><div class="skeleton" style="height:13px;width:70%;margin-bottom:8px;border-radius:2px"></div><div class="skeleton" style="height:15px;width:40%;border-radius:2px"></div></div></div>
+    <div class="product-card"><div class="product-card-image skeleton" style="aspect-ratio:3/4"></div><div class="product-card-body"><div class="skeleton" style="height:13px;width:70%;margin-bottom:8px;border-radius:2px"></div><div class="skeleton" style="height:15px;width:40%;border-radius:2px"></div></div></div>
+    <div class="product-card"><div class="product-card-image skeleton" style="aspect-ratio:3/4"></div><div class="product-card-body"><div class="skeleton" style="height:13px;width:70%;margin-bottom:8px;border-radius:2px"></div><div class="skeleton" style="height:15px;width:40%;border-radius:2px"></div></div></div>
+    <div class="product-card"><div class="product-card-image skeleton" style="aspect-ratio:3/4"></div><div class="product-card-body"><div class="skeleton" style="height:13px;width:70%;margin-bottom:8px;border-radius:2px"></div><div class="skeleton" style="height:15px;width:40%;border-radius:2px"></div></div></div>
+    <div class="product-card"><div class="product-card-image skeleton" style="aspect-ratio:3/4"></div><div class="product-card-body"><div class="skeleton" style="height:13px;width:70%;margin-bottom:8px;border-radius:2px"></div><div class="skeleton" style="height:15px;width:40%;border-radius:2px"></div></div></div>
+  </div>
+  <div style="text-align:center;margin-top:40px;">
+    <a href="/shop.html" class="btn-primary">SHOP MORE</a>
+  </div>
+</section>
+
+<!-- ── Features Strip ─────────────────────────────────── -->
+<div class="features-strip">
+  <div class="feature-item">
+    <span class="feature-icon">🚀</span>
+    <div class="feature-title">Fast Delivery</div>
+    <div class="feature-desc">2–5 business days across India</div>
+  </div>
+  <div class="feature-item">
+    <span class="feature-icon">♻️</span>
+    <div class="feature-title">Easy Returns</div>
+    <div class="feature-desc">30-day hassle-free returns</div>
+  </div>
+  <div class="feature-item">
+    <span class="feature-icon">🔒</span>
+    <div class="feature-title">Secure Payments</div>
+    <div class="feature-desc">100% safe &amp; encrypted checkout</div>
+  </div>
+  <div class="feature-item">
+    <span class="feature-icon">💎</span>
+    <div class="feature-title">Premium Quality</div>
+    <div class="feature-desc">Crafted for comfort &amp; style</div>
+  </div>
+</div>
+
+<!-- ── Upcoming Events ─────────────────────────────────── -->
+<section style="padding:70px 40px;background:#fff;" id="events-section">
+  <div class="section-header">
+    <span class="section-label">Don't Miss Out</span>
+    <h2 class="section-title">UPCOMING EVENTS</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="events-grid" id="events-container"></div>
+</section>
+
+<!-- ── Offers Section ─────────────────────────────────── -->
+<section style="padding:70px 40px;background:#111;" id="offers-section">
+  <div class="section-header">
+    <span class="section-label" style="color:#555">Exclusive Deals</span>
+    <h2 class="section-title" style="color:#fff">HOT OFFERS</h2>
+    <div class="section-divider" style="background:#c0392b"></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px" id="home-offers-grid">
+    <!-- Populated by JS -->
+    <div style="background:#1a1a1a;border:1px solid #333;padding:28px;text-align:center;">
+      <div style="font-size:2rem;font-weight:800;color:#fff;margin-bottom:8px">10% OFF</div>
+      <div style="font-size:13px;color:#888;margin-bottom:16px">On all new arrivals</div>
+      <div style="background:#c0392b;color:#fff;padding:10px 20px;font-size:13px;font-weight:700;letter-spacing:3px;cursor:pointer;display:inline-block" onclick="copyPromoCode('SOUL10')">SOUL10</div>
+    </div>
+    <div style="background:#1a1a1a;border:1px solid #333;padding:28px;text-align:center;">
+      <div style="font-size:2rem;font-weight:800;color:#fff;margin-bottom:8px">FREE SHIP</div>
+      <div style="font-size:13px;color:#888;margin-bottom:16px">On orders above ₹999</div>
+      <div style="background:#333;color:#fff;padding:10px 20px;font-size:13px;font-weight:700;letter-spacing:3px;display:inline-block">AUTO APPLIED</div>
+    </div>
+    <div style="background:#1a1a1a;border:1px solid #333;padding:28px;text-align:center;">
+      <div style="font-size:2rem;font-weight:800;color:#fff;margin-bottom:8px">15% OFF</div>
+      <div style="font-size:13px;color:#888;margin-bottom:16px">First order — new customers</div>
+      <div style="background:#c0392b;color:#fff;padding:10px 20px;font-size:13px;font-weight:700;letter-spacing:3px;cursor:pointer;display:inline-block" onclick="copyPromoCode('WELCOME15')">WELCOME15</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ─────────────────────────────────────────── -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">Soul Clothing</div>
+      <p class="footer-about">Premium streetwear crafted for those who lead. Wear The Soul. Own The Street.</p>
+      <div style="margin-top:20px;display:flex;gap:14px">
+        <a href="#" style="color:rgba(255,255,255,0.5);font-size:18px;transition:color 0.2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">📸</a>
+        <a href="#" style="color:rgba(255,255,255,0.5);font-size:18px;transition:color 0.2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">🐦</a>
+        <a href="#" style="color:rgba(255,255,255,0.5);font-size:18px;transition:color 0.2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">📺</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-heading">Shop</div>
+      <ul class="footer-links">
+        <li><a href="/shop.html?cat=tshirt">T-Shirts</a></li>
+        <li><a href="/shop.html?cat=polo">Polo</a></li>
+        <li><a href="/shop.html?cat=shirt">Shirts</a></li>
+        <li><a href="/shop.html?cat=jeans">Jeans</a></li>
+        <li><a href="/shop.html?cat=sneakers">Sneakers</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Help</div>
+      <ul class="footer-links">
+        <li><a href="#">Size Guide</a></li>
+        <li><a href="#">Shipping Info</a></li>
+        <li><a href="#">Return Policy</a></li>
+        <li><a href="#">Track Order</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Stay Updated</div>
+      <p style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:14px;line-height:1.6">Get new drops &amp; exclusive offers in your inbox.</p>
+      <div style="display:flex;gap:0">
+        <input type="email" placeholder="your@email.com" style="flex:1;background:#1a1a1a;border:1px solid #333;color:#fff;padding:10px 14px;font-size:13px;font-family:'Inter',sans-serif;outline:none">
+        <button style="background:#c0392b;color:#fff;border:none;padding:10px 16px;font-size:12px;font-weight:700;letter-spacing:1px;cursor:pointer">JOIN</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 Soul Clothing. All rights reserved.</span>
+    <span style="letter-spacing:2px">WEAR THE SOUL · OWN THE STREET</span>
+  </div>
+</footer>
+
+<!-- ── Cart ────────────────────────────────────────────── -->
+<div id="cart-overlay" onclick="closeCart()"></div>
+<aside id="cart-sidebar">
+  <div class="cart-header">
+    <h2>Your Cart</h2>
+    <button class="cart-close-btn" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-body" id="cart-items">
+    <div class="cart-empty">Your cart is empty.<br><br><a href="/shop.html" style="font-weight:700;text-decoration:underline;color:#111">START SHOPPING →</a></div>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-subtotal">
+      <span class="label">SUBTOTAL</span>
+      <span class="amount" id="cart-total">₹0</span>
+    </div>
+    <button class="btn-checkout" onclick="window.location.href='/checkout.html'">PROCEED TO CHECKOUT</button>
+  </div>
+</aside>
+
+<!-- ── Product Modal ───────────────────────────────────── -->
+<div id="product-modal-overlay" style="display:none" onclick="if(event.target===this)closeProductModal()"></div>
+
+<!-- ── Toast ──────────────────────────────────────────── -->
+<div id="toast-container"></div>
+
+<script type="module" src="/js/app.js"></script>
+<script type="module" src="/js/home.js"></script>
+</body>
+</html>

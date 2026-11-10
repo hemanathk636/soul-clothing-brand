@@ -1,0 +1,23 @@
+{
+  "name": "soulclothingbrand",
+  "version": "1.0.0",
+  "description": "Full-Stack E-Commerce Platform & Hologram Outfit Studio for Soul Clothing Brand",
+  "private": true,
+  "scripts": {
+    "install:all": "npm --prefix backend install && npm --prefix frontend install",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "start": "npm --prefix backend start",
+    "build": "npm --prefix frontend run build"
+  },
+  "keywords": [
+    "e-commerce",
+    "clothing-brand",
+    "hologram-studio",
+    "vite",
+    "express",
+    "full-stack"
+  ],
+  "author": "Hemanath K",
+  "license": "MIT"
+}

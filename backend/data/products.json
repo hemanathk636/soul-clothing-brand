@@ -1,0 +1,1076 @@
+[
+  {
+    "id": "TSH001",
+    "name": "Midnight Shadow Tee",
+    "category": "t-shirts",
+    "gender": "men",
+    "price": 3000,
+    "originalPrice": 1799,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "color": "Black",
+    "description": "Premium heavyweight cotton tee with a subtle shadow-washed finish. Ultra-soft, preshrunk fabric for a perfect everyday fit.",
+    "isNew": true,
+    "soldCount": 340,
+    "stock": 44,
+    "rating": 4.7,
+    "reviews": 128,
+    "images": [
+      "https://images.unsplash.com/photo-1527719327859-c6ce80353573?w=600&q=80",
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80"
+    ]
+  },
+  {
+    "id": "TSH002",
+    "name": "Arctic White Essential",
+    "category": "t-shirts",
+    "gender": "men",
+    "price": 999,
+    "originalPrice": 1299,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "color": "White",
+    "description": "A timeless white essential crafted from 100% organic cotton. Clean, crisp, and effortlessly stylish.",
+    "isNew": false,
+    "soldCount": 520,
+    "stock": 80,
+    "rating": 4.5,
+    "reviews": 245,
+    "images": [
+      "https://images.unsplash.com/photo-1586790170083-2f9ceadc732d?w=600&q=80"
+    ]
+  },
+  {
+    "id": "TSH003",
+    "name": "Ember Graphic Tee",
+    "category": "t-shirts",
+    "gender": "men",
+    "price": 1499,
+    "originalPrice": 1999,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "color": "Charcoal",
+    "description": "Bold street-art inspired graphic on a relaxed-fit charcoal base. Express yourself.",
+    "isNew": true,
+    "soldCount": 180,
+    "stock": 35,
+    "rating": 4.8,
+    "reviews": 92,
+    "images": [
+      "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600&q=80"
+    ]
+  },
+  {
+    "id": "TSH004",
+    "name": "Blossom Crop Tee",
+    "category": "t-shirts",
+    "gender": "women",
+    "price": 1199,
+    "originalPrice": 1599,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "color": "Dusty Rose",
+    "description": "A delicate cropped tee in dusty rose with a raw-hem finish. Pairs perfectly with high-waist jeans or skirts.",
+    "isNew": true,
+    "soldCount": 290,
+    "stock": 45,
+    "rating": 4.9,
+    "reviews": 167,
+    "images": [
+      "https://images.unsplash.com/photo-1485462537746-965f33f7f6a7?w=600&q=80"
+    ]
+  },
+  {
+    "id": "TSH005",
+    "name": "Sage Oversized Tee",
+    "category": "t-shirts",
+    "gender": "women",
+    "price": 1399,
+    "originalPrice": 1799,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "color": "Sage Green",
+    "description": "Relaxed oversized fit in sage green. Made from soft GOTS-certified organic cotton.",
+    "isNew": false,
+    "soldCount": 410,
+    "stock": 60,
+    "rating": 4.6,
+    "reviews": 203,
+    "images": [
+      "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600&q=80"
+    ]
+  },
+  {
+    "id": "POL001",
+    "name": "Classic Pique Polo",
+    "category": "polo",
+    "gender": "men",
+    "price": 1899,
+    "originalPrice": 2499,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "color": "Navy Blue",
+    "description": "Timeless pique polo in deep navy. Three-button placket, ribbed collar, and a slim athletic cut.",
+    "isNew": false,
+    "soldCount": 630,
+    "stock": 70,
+    "rating": 4.7,
+    "reviews": 318,
+    "images": [
+      "https://images.unsplash.com/photo-1622470953794-aa9c70b0fb9d?w=600&q=80"
+    ]
+  },
+  {
+    "id": "POL002",
+    "name": "Heritage Stripe Polo",
+    "category": "polo",
+    "gender": "men",
+    "price": 2199,
+    "originalPrice": 2899,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "color": "White/Navy",
+    "description": "Sophisticated horizontal stripes on premium cotton-blend fabric. A wardrobe staple.",
+    "isNew": true,
+    "soldCount": 145,
+    "stock": 40,
+    "rating": 4.5,
+    "reviews": 88,
+    "images": [
+      "https://images.unsplash.com/photo-1625910513595-22c8e4abdc68?w=600&q=80"
+    ]
+  },
+  {
+    "id": "POL003",
+    "name": "Luxe Tencel Polo",
+    "category": "polo",
+    "gender": "women",
+    "price": 1999,
+    "originalPrice": 2699,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "color": "Ivory",
+    "description": "Feminine fit polo in breathable Tencel fabric. Soft sheen and eco-conscious construction.",
+    "isNew": true,
+    "soldCount": 210,
+    "stock": 38,
+    "rating": 4.8,
+    "reviews": 112,
+    "images": [
+      "https://images.unsplash.com/photo-1594938298603-c8148c4b4f37?w=600&q=80"
+    ]
+  },
+  {
+    "id": "SHT001",
+    "name": "Oxford Button-Down",
+    "category": "shirts",
+    "gender": "men",
+    "price": 2499,
+    "originalPrice": 3199,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "color": "Light Blue",
+    "description": "Classic Oxford cloth button-down in light blue. Versatile enough for the boardroom or brunch.",
+    "isNew": false,
+    "soldCount": 780,
+    "stock": 55,
+    "rating": 4.8,
+    "reviews": 421,
+    "images": [
+      "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600&q=80"
+    ]
+  },
+  {
+    "id": "SHT002",
+    "name": "Linen Resort Shirt",
+    "category": "shirts",
+    "gender": "men",
+    "price": 2799,
+    "originalPrice": 3499,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "color": "Sand",
+    "description": "100% linen resort shirt with a relaxed camp collar. Your ultimate vacation companion.",
+    "isNew": true,
+    "soldCount": 265,
+    "stock": 42,
+    "rating": 4.9,
+    "reviews": 156,
+    "images": [
+      "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=600&q=80"
+    ]
+  },
+  {
+    "id": "SHT003",
+    "name": "Floral Wrap Shirt",
+    "category": "shirts",
+    "gender": "women",
+    "price": 2299,
+    "originalPrice": 2999,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "color": "Floral Print",
+    "description": "Bohemian floral wrap shirt in lightweight viscose. Effortlessly elegant and adjustable fit.",
+    "isNew": true,
+    "soldCount": 380,
+    "stock": 48,
+    "rating": 4.7,
+    "reviews": 198,
+    "images": [
+      "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=600&q=80"
+    ]
+  },
+  {
+    "id": "JNS001",
+    "name": "Slim Fit Indigo Jeans",
+    "category": "jeans",
+    "gender": "men",
+    "price": 3499,
+    "originalPrice": 4499,
+    "sizes": [
+      "28",
+      "30",
+      "32",
+      "34",
+      "36",
+      "38"
+    ],
+    "color": "Indigo",
+    "description": "Premium selvedge denim in a modern slim fit. Deep indigo wash with subtle fading for a lived-in feel.",
+    "isNew": false,
+    "soldCount": 920,
+    "stock": 65,
+    "rating": 4.8,
+    "reviews": 567,
+    "images": [
+      "https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&q=80"
+    ]
+  },
+  {
+    "id": "JNS002",
+    "name": "Distressed Straight Jeans",
+    "category": "jeans",
+    "gender": "men",
+    "price": 3199,
+    "originalPrice": 3999,
+    "sizes": [
+      "28",
+      "30",
+      "32",
+      "34",
+      "36"
+    ],
+    "color": "Medium Wash",
+    "description": "Authentic distressed detailing on a classic straight-leg cut. Made from stretch denim for all-day comfort.",
+    "isNew": true,
+    "soldCount": 310,
+    "stock": 50,
+    "rating": 4.6,
+    "reviews": 243,
+    "images": [
+      "https://images.unsplash.com/photo-1555689502-c4b22d76c56f?w=600&q=80"
+    ]
+  },
+  {
+    "id": "JNS003",
+    "name": "High-Rise Skinny Jeans",
+    "category": "jeans",
+    "gender": "women",
+    "price": 2999,
+    "originalPrice": 3799,
+    "sizes": [
+      "24",
+      "26",
+      "28",
+      "30",
+      "32"
+    ],
+    "color": "Dark Wash",
+    "description": "Flattering high-rise silhouette with 4-way stretch fabric. Elevates any outfit.",
+    "isNew": false,
+    "soldCount": 850,
+    "stock": 72,
+    "rating": 4.9,
+    "reviews": 489,
+    "images": [
+      "https://images.unsplash.com/photo-1584370848010-d7fe6bc767ec?w=600&q=80"
+    ]
+  },
+  {
+    "id": "JNS004",
+    "name": "Wide Leg Retro Jeans",
+    "category": "jeans",
+    "gender": "women",
+    "price": 3299,
+    "originalPrice": 4199,
+    "sizes": [
+      "24",
+      "26",
+      "28",
+      "30",
+      "32",
+      "34"
+    ],
+    "color": "Light Wash",
+    "description": "70s-inspired wide-leg silhouette in a soft light wash. A statement piece that demands attention.",
+    "isNew": true,
+    "soldCount": 420,
+    "stock": 55,
+    "rating": 4.7,
+    "reviews": 275,
+    "images": [
+      "https://images.unsplash.com/photo-1551854838-212c9a5dd661?w=600&q=80"
+    ]
+  },
+  {
+    "id": "PNT001",
+    "name": "Tailored Chino Pants",
+    "category": "pants",
+    "gender": "men",
+    "price": 2799,
+    "originalPrice": 3499,
+    "sizes": [
+      "28",
+      "30",
+      "32",
+      "34",
+      "36"
+    ],
+    "color": "Khaki",
+    "description": "Sharp tailored chinos with a comfortable slim-tapered fit. Goes from office to evening effortlessly.",
+    "isNew": false,
+    "soldCount": 560,
+    "stock": 60,
+    "rating": 4.7,
+    "reviews": 334,
+    "images": [
+      "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&q=80"
+    ]
+  },
+  {
+    "id": "PNT002",
+    "name": "Track Jogger Pants",
+    "category": "pants",
+    "gender": "men",
+    "price": 1999,
+    "originalPrice": 2499,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "color": "Charcoal Grey",
+    "description": "Tech-fabric joggers with a tapered fit, zip pockets, and moisture-wicking technology.",
+    "isNew": true,
+    "soldCount": 480,
+    "stock": 75,
+    "rating": 4.6,
+    "reviews": 287,
+    "images": [
+      "https://images.unsplash.com/photo-1593079831268-3381b0db4a77?w=600&q=80"
+    ]
+  },
+  {
+    "id": "PNT003",
+    "name": "Palazzo Drape Pants",
+    "category": "pants",
+    "gender": "women",
+    "price": 2299,
+    "originalPrice": 2999,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "color": "Cream",
+    "description": "Fluid palazzo pants in crepe fabric with a high-waist tie-belt. Sophisticated and breezy.",
+    "isNew": true,
+    "soldCount": 195,
+    "stock": 40,
+    "rating": 4.8,
+    "reviews": 143,
+    "images": [
+      "https://images.unsplash.com/photo-1509551388413-e18d0ac5d495?w=600&q=80"
+    ]
+  },
+  {
+    "id": "PNT004",
+    "name": "Flare Trousers",
+    "category": "pants",
+    "gender": "women",
+    "price": 2499,
+    "originalPrice": 3199,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "color": "Midnight Blue",
+    "description": "Contemporary flare-leg trousers in stretch ponte fabric. Polished enough for any occasion.",
+    "isNew": false,
+    "soldCount": 340,
+    "stock": 45,
+    "rating": 4.5,
+    "reviews": 212,
+    "images": [
+      "https://images.unsplash.com/photo-1548048026-5a1a941d93d3?w=600&q=80"
+    ]
+  },
+  {
+    "id": "SNK001",
+    "name": "Soul Runner Pro",
+    "category": "sneakers",
+    "gender": "men",
+    "price": 7999,
+    "originalPrice": 9999,
+    "sizes": [
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "color": "Triple White",
+    "description": "Premium performance runner with responsive cushioning and breathable engineered mesh upper.",
+    "isNew": true,
+    "soldCount": 220,
+    "stock": 30,
+    "rating": 4.9,
+    "reviews": 178,
+    "images": [
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&q=80"
+    ]
+  },
+  {
+    "id": "SNK002",
+    "name": "Street Classic Low",
+    "category": "sneakers",
+    "gender": "unisex",
+    "price": 5999,
+    "originalPrice": 7499,
+    "sizes": [
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11"
+    ],
+    "color": "Black/Gum",
+    "description": "Minimal low-top silhouette with a vulcanized sole and premium leather upper. An icon redefined.",
+    "isNew": false,
+    "soldCount": 1101,
+    "stock": 84,
+    "rating": 4.8,
+    "reviews": 642,
+    "images": [
+      "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=600&q=80"
+    ]
+  },
+  {
+    "id": "SNK003",
+    "name": "Cloud Foam Slide",
+    "category": "sneakers",
+    "gender": "unisex",
+    "price": 2999,
+    "originalPrice": 3799,
+    "sizes": [
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10"
+    ],
+    "color": "Sand/Brown",
+    "description": "Ultra-cushioned EVA foam slides with an anatomical footbed. Step into pure comfort.",
+    "isNew": true,
+    "soldCount": 380,
+    "stock": 60,
+    "rating": 4.6,
+    "reviews": 234,
+    "images": [
+      "https://images.unsplash.com/photo-1603808033192-082d6919d3e1?w=600&q=80"
+    ]
+  },
+  {
+    "id": "SNK004",
+    "name": "Soul Glam Platform",
+    "category": "sneakers",
+    "gender": "women",
+    "price": 6499,
+    "originalPrice": 7999,
+    "sizes": [
+      "5",
+      "6",
+      "7",
+      "8",
+      "9"
+    ],
+    "color": "White/Gold",
+    "description": "Fashion-forward platform sneaker with metallic gold accents. Where street meets couture.",
+    "isNew": true,
+    "soldCount": 155,
+    "stock": 28,
+    "rating": 4.9,
+    "reviews": 98,
+    "images": [
+      "https://images.unsplash.com/photo-1579338559194-a162d19bf842?w=600&q=80"
+    ]
+  },
+  {
+    "id": "FS001",
+    "name": "Classic White Formal Shirt",
+    "category": "formal-shirt",
+    "gender": "men",
+    "price": 1299,
+    "originalPrice": 1799,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "color": "White",
+    "description": "Crisp poplin weave formal shirt with spread collar and mother-of-pearl buttons. Slim fit for a sharp silhouette.",
+    "isNew": true,
+    "soldCount": 120,
+    "stock": 80,
+    "rating": 4.7,
+    "reviews": 89,
+    "images": [
+      "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600&q=80"
+    ]
+  },
+  {
+    "id": "FS002",
+    "name": "Royal Blue Slim Formal",
+    "category": "formal-shirt",
+    "gender": "men",
+    "price": 1499,
+    "originalPrice": 1999,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "color": "Royal Blue",
+    "description": "Premium cotton-blend slim-fit formal shirt. Perfect for office meetings or formal events. Wrinkle-resistant fabric.",
+    "isNew": true,
+    "soldCount": 85,
+    "stock": 60,
+    "rating": 4.6,
+    "reviews": 64,
+    "images": [
+      "https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?w=600&q=80"
+    ]
+  },
+  {
+    "id": "FS003",
+    "name": "Charcoal Herringbone Formal",
+    "category": "formal-shirt",
+    "gender": "men",
+    "price": 1699,
+    "originalPrice": 2299,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "color": "Charcoal",
+    "description": "Woven herringbone pattern adds subtle texture to this executive formal shirt. Semi-spread collar, French cuffs.",
+    "isNew": true,
+    "soldCount": 67,
+    "stock": 45,
+    "rating": 4.8,
+    "reviews": 43,
+    "images": [
+      "https://images.unsplash.com/photo-1594938298603-c8148c4b4f9a?w=600&q=80"
+    ]
+  },
+  {
+    "id": "FS004",
+    "name": "Black Satin Evening Shirt",
+    "category": "formal-shirt",
+    "gender": "men",
+    "price": 1899,
+    "originalPrice": 2499,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "color": "Black",
+    "description": "Luxurious satin-finish formal shirt ideal for evening events and gala dinners. Hidden button placket, slim fit.",
+    "isNew": false,
+    "soldCount": 102,
+    "stock": 38,
+    "rating": 4.9,
+    "reviews": 77,
+    "images": [
+      "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&q=80"
+    ]
+  },
+  {
+    "id": "FS005",
+    "name": "Pale Pink Oxford Formal",
+    "category": "formal-shirt",
+    "gender": "men",
+    "price": 1199,
+    "originalPrice": 1599,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "color": "Pale Pink",
+    "description": "Soft Oxford cloth formal shirt in a flattering pale pink. Button-down collar, chest pocket, relaxed slim fit.",
+    "isNew": false,
+    "soldCount": 55,
+    "stock": 70,
+    "rating": 4.5,
+    "reviews": 38,
+    "images": [
+      "https://images.unsplash.com/photo-1598032895397-b9472444bf93?w=600&q=80"
+    ]
+  },
+  {
+    "id": "FS006",
+    "name": "White Lace Formal Blouse",
+    "category": "formal-shirt",
+    "gender": "women",
+    "price": 1199,
+    "originalPrice": 1599,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "color": "White",
+    "description": "Elegant lace-trim formal blouse with a mandarin collar. Lightweight crepe fabric, semi-sheer sleeves, tailored fit.",
+    "isNew": true,
+    "soldCount": 93,
+    "stock": 55,
+    "rating": 4.7,
+    "reviews": 61,
+    "images": [
+      "https://images.unsplash.com/photo-1485462537746-965f33f7f6a7?w=600&q=80"
+    ]
+  },
+  {
+    "id": "FS007",
+    "name": "Navy Peplum Formal Top",
+    "category": "formal-shirt",
+    "gender": "women",
+    "price": 1399,
+    "originalPrice": 1899,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "color": "Navy",
+    "description": "Structured peplum formal top with subtle pleating. Perfect for boardroom or business casual. V-neck, 3/4 sleeves.",
+    "isNew": true,
+    "soldCount": 74,
+    "stock": 42,
+    "rating": 4.6,
+    "reviews": 49,
+    "images": [
+      "https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?w=600&q=80"
+    ]
+  },
+  {
+    "id": "FS008",
+    "name": "Ivory Silk-Blend Formal Shirt",
+    "category": "formal-shirt",
+    "gender": "women",
+    "price": 1599,
+    "originalPrice": 2199,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "color": "Ivory",
+    "description": "Fluid silk-blend formal shirt with a relaxed silhouette. Wear tucked or untucked. Subtle sheen, zero-iron fabric.",
+    "isNew": false,
+    "soldCount": 88,
+    "stock": 35,
+    "rating": 4.8,
+    "reviews": 66,
+    "images": [
+      "https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=600&q=80"
+    ]
+  },
+  {
+    "id": "DRS001",
+    "name": "Noir Velvet Slip Dress",
+    "category": "dress",
+    "price": 2899,
+    "originalPrice": 4499,
+    "description": "Gothic-inspired luxury slip dress tailored from heavyweight crushed velvet. Features delicate cowl neckline, adjustable micro-straps, and deep side slit.",
+    "details": [
+      "Fabric: 380 GSM Crushed Poly-Velvet",
+      "Fit: Fluid Silhouette with Bias Cut",
+      "Deep lateral movement slit",
+      "Dry clean recommended"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "colors": [
+      "Midnight Black",
+      "Bordeaux Red"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&q=85",
+      "https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=800&q=85"
+    ],
+    "stock": 24,
+    "isNew": true,
+    "isBestSeller": true,
+    "soldCount": 142,
+    "gender": "women",
+    "specId": "OBJ-DRS-01",
+    "fabricSpec": "380 GSM Crushed Velvet // Deep Dye #000000"
+  },
+  {
+    "id": "DRS002",
+    "name": "Structured Cyber Blazer Dress",
+    "category": "dress",
+    "price": 3499,
+    "originalPrice": 5199,
+    "description": "Double-breasted tailored blazer dress with sharp architectural shoulder pads, matte gunmetal hardware, and cinch-cord waist harness.",
+    "details": [
+      "Fabric: Japanese Wool-Blend Twill (340 GSM)",
+      "Peak lapels with tonal stitch accents",
+      "Double-breasted metallic snap buttons",
+      "Fully lined with cupro silk"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "colors": [
+      "Onyx Black",
+      "Stone Grey"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=800&q=85",
+      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=85"
+    ],
+    "stock": 18,
+    "isNew": true,
+    "isBestSeller": false,
+    "soldCount": 89,
+    "gender": "women",
+    "specId": "OBJ-DRS-02",
+    "fabricSpec": "340 GSM Wool-Twill // Architectural Shoulder Line"
+  },
+  {
+    "id": "DRS003",
+    "name": "Gothic Satin Asymmetric Midi Dress",
+    "category": "dress",
+    "price": 2699,
+    "originalPrice": 3999,
+    "description": "Lustrous heavyweight liquid satin dress with an asymmetric hemline, open crisscross back, and raw-edge seam detailing.",
+    "details": [
+      "Fabric: 280 GSM Heavy Japanese Liquid Satin",
+      "Bias cut drape for contour silhouette",
+      "Self-tie cord back detailing",
+      "French seam internal construction"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "colors": [
+      "Liquid Charcoal",
+      "Emerald Shadow"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=800&q=85"
+    ],
+    "stock": 15,
+    "isNew": true,
+    "isBestSeller": true,
+    "soldCount": 167,
+    "gender": "women",
+    "specId": "OBJ-DRS-03",
+    "fabricSpec": "280 GSM Heavy Liquid Satin // Anti-Static Finish"
+  },
+  {
+    "id": "DRS004",
+    "name": "Avant-Garde Drape Shirtdress",
+    "category": "dress",
+    "price": 2499,
+    "originalPrice": 3699,
+    "description": "Hybrid between an oversized tailored formal shirt and flowing midi dress. Features drop-shoulder silhouette, mother-of-pearl buttons, and waist tie sash.",
+    "details": [
+      "Fabric: 100% Crisp Giza Cotton Poplin (220 GSM)",
+      "Extended buttoned cuffs with double gauntlet",
+      "Detachable utility waist belt",
+      "High-low curved shirt hem"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Optical White",
+      "Monochrome Stripe"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800&q=85"
+    ],
+    "stock": 30,
+    "isNew": true,
+    "isBestSeller": false,
+    "soldCount": 65,
+    "gender": "women",
+    "specId": "OBJ-DRS-04",
+    "fabricSpec": "220 GSM Egyptian Poplin // Clean Optical White"
+  },
+  {
+    "id": "GUR001",
+    "name": "Japanese Bootcut Fit Gurkha Pant",
+    "category": "pants",
+    "gender": "men",
+    "price": 1170,
+    "originalPrice": 1699,
+    "sizes": [
+      "28",
+      "30",
+      "32",
+      "34",
+      "36"
+    ],
+    "color": "Stone Grey",
+    "description": "Vintage military Gurkha high-rise waist with extended cummerbund double-buckle closure. Tailored Japanese twill with a flared bootcut drape.",
+    "details": [
+      "Double buckle side-adjuster Gurkha waistband",
+      "Deep front double pleats for maximum flow",
+      "Heavy Japanese cotton-poly twill (360 GSM)",
+      "Blind-stitched wide leg opening"
+    ],
+    "isNew": true,
+    "isBestSeller": true,
+    "soldCount": 310,
+    "stock": 45,
+    "rating": 4.9,
+    "reviews": 142,
+    "images": [
+      "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=800&q=85",
+      "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=800&q=85"
+    ]
+  },
+  {
+    "id": "FS009",
+    "name": "Soul Plain Satin Shirt - Maroon",
+    "category": "formal-shirt",
+    "gender": "men",
+    "price": 549,
+    "originalPrice": 999,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "color": "Deep Maroon",
+    "description": "High-shine ultra-fluid liquid satin evening shirt. Tailored collar, French placket, and tonal pearlescent buttons.",
+    "details": [
+      "100% High-Grade Liquid Poly-Satin",
+      "Wrinkle-resistant reflective weave",
+      "Curved hemline for tuck or untuck",
+      "Slim contoured fit"
+    ],
+    "isNew": true,
+    "isBestSeller": true,
+    "soldCount": 420,
+    "stock": 65,
+    "rating": 4.8,
+    "reviews": 188,
+    "images": [
+      "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&q=85",
+      "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=85"
+    ]
+  },
+  {
+    "id": "SHT004",
+    "name": "Torch Back Printed Dip-Dye Shirt",
+    "category": "shirts",
+    "gender": "men",
+    "price": 990,
+    "originalPrice": 1499,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "color": "Black / Bleached White",
+    "description": "Artisanal hand-dipped ombre gradient shirt with gothic script torch graphics silk-screened on back and sleeves.",
+    "details": [
+      "Heavyweight 260 GSM textured poplin",
+      "Gradient dip-dye wash treatment",
+      "Dropped shoulder boxy silhouette",
+      "Distressed hem edge"
+    ],
+    "isNew": true,
+    "isBestSeller": true,
+    "soldCount": 280,
+    "stock": 40,
+    "rating": 4.9,
+    "reviews": 95,
+    "images": [
+      "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=800&q=85"
+    ]
+  },
+  {
+    "id": "SHT005",
+    "name": "The Linen-Blend Outlined Flora Shirt",
+    "category": "shirts",
+    "gender": "men",
+    "price": 899,
+    "originalPrice": 1199,
+    "sizes": [
+      "M",
+      "L",
+      "XL"
+    ],
+    "color": "Natural Cream / Flora Print",
+    "description": "Bespoke resort-collared shirt with fine botanical line-art illustration on breathable natural flax linen blend.",
+    "details": [
+      "55% French Linen / 45% Cotton",
+      "Camp collar (cuban open collar)",
+      "Mother-of-pearl buttons",
+      "Relaxed resort fit"
+    ],
+    "isNew": true,
+    "isBestSeller": false,
+    "soldCount": 160,
+    "stock": 35,
+    "rating": 4.7,
+    "reviews": 58,
+    "images": [
+      "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=800&q=85"
+    ]
+  },
+  {
+    "id": "SHT006",
+    "name": "Midnight Bloom Oversize Shirt",
+    "category": "shirts",
+    "gender": "unisex",
+    "price": 899,
+    "originalPrice": 1199,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "color": "Dark Floral",
+    "description": "Lush dark romantic floral print against midnight black canvas. Cut in an oversized streetwear drape with extended cuffs.",
+    "details": [
+      "Fluid viscose drape",
+      "Oversized boxy streetwear block",
+      "Cuban lapel collar",
+      "High-definition digital floral dye"
+    ],
+    "isNew": true,
+    "isBestSeller": true,
+    "soldCount": 390,
+    "stock": 50,
+    "rating": 4.9,
+    "reviews": 172,
+    "images": [
+      "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=800&q=85"
+    ]
+  }
+]

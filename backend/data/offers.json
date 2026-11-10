@@ -1,0 +1,32 @@
+[
+  {
+    "id": "OFF-101",
+    "code": "SOUL20",
+    "title": "Season Launch Special",
+    "discountPercent": 20,
+    "bannerText": "✨ FLASH SALE: Get 20% OFF on all New Arrivals with code SOUL20!",
+    "description": "Applies on all collection orders above ₹1,999.",
+    "active": true,
+    "expiresAt": "2026-10-31"
+  },
+  {
+    "id": "OFF-102",
+    "code": "FREESHIP",
+    "title": "Complimentary Express Delivery",
+    "discountPercent": 0,
+    "bannerText": "🚚 Free Express Shipping across India on orders above ₹2,999",
+    "description": "Automatic at checkout for orders exceeding ₹2,999 threshold.",
+    "active": true,
+    "expiresAt": "2026-12-31"
+  },
+  {
+    "id": "OFF-103",
+    "code": "FIRST15",
+    "title": "First Time Shopper",
+    "discountPercent": 15,
+    "bannerText": "🎁 Welcome to Soul: 15% OFF your first purchase with FIRST15",
+    "description": "Exclusive welcome gift for newly registered members.",
+    "active": true,
+    "expiresAt": "2026-11-15"
+  }
+]
